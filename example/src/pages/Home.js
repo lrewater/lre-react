@@ -1,5 +1,4 @@
 import React from "react";
-import Loading from "../components/Loading";
 import { withStyles } from "@material-ui/core/styles";
 import { Typography, Card, CardContent, Grid } from "@material-ui/core";
 
