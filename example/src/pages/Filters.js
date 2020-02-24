@@ -1,7 +1,7 @@
 import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import { Typography } from "@material-ui/core";
-import { DateFilter } from "lre-react";
+import { DateFilter, SwitchFilter } from "lre-react";
 
 // create page styles
 const useStyles = makeStyles(theme => ({
@@ -24,6 +24,13 @@ const Filters = props => {
           name="test"
           label="Date"
           value="2020-02-24"
+          onChange={() => {}}
+        />
+        <SwitchFilter
+          name="switch"
+          label="Switch"
+          value="switch"
+          checked={true}
           onChange={() => {}}
         />
       </div>
