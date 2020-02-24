@@ -1,10 +1,11 @@
 {
-  "name": "lre-react",
+  "name": "@lre-water/lre-react",
   "version": "1.0.0",
   "description": "",
   "author": "lrewater",
+  "private": true,
   "license": "MIT",
-  "repository": "lrewater/lre-react",
+  "repository": "https://github.com/lrewater/lre-react",
   "main": "dist/index.js",
   "module": "dist/index.es.js",
   "jsnext:main": "dist/index.es.js",
