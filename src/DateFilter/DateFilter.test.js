@@ -25,7 +25,7 @@ describe("Invalid <DateFilter /> Configs", () => {
   });
 });
 
-describe("Valid <DateFilter /> Configs", () => {
+describe("Valid <DateFilter /> configs", () => {
   test("<DateFilter /> standard use case", () => {
     const { getByTestId, getByLabelText } = render(
       <DateFilter
