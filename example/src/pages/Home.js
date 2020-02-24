@@ -1,9 +1,10 @@
 import React from "react";
-import { withStyles } from "@material-ui/core/styles";
+import { makeStyles } from "@material-ui/core/styles";
 import { Typography, Card, CardContent, Grid } from "@material-ui/core";
+import { DateFilter } from "lre-react";
 
 // create page styles
-const styles = theme => ({
+const useStyles = makeStyles(theme => ({
   root: {
     display: "flex"
   },
@@ -50,10 +51,10 @@ const styles = theme => ({
   snackbarError: {
     backgroundColor: "#e94a4a"
   }
-});
+}));
 
 const Home = props => {
-  const { classes } = props;
+  const classes = useStyles();
 
   return (
     <div className={classes.root}>
@@ -128,6 +129,12 @@ const Home = props => {
                 </Card>
               </Grid>
             </Grid>
+            <DateFilter
+              name="test"
+              label="Date"
+              value="2020-02-24"
+              onChange={() => {}}
+            />
           </section>
         </div>
       </div>
@@ -135,4 +142,4 @@ const Home = props => {
   );
 };
 
-export default withStyles(styles, { withTheme: true })(Home);
+export default Home;
