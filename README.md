@@ -6,35 +6,35 @@
 
 ## Roadmap
 
-- [] Filters
-  - [] Date
-  - [] Multi-select
-  - [] Single-select
-  - [] Search multi-select
-  - [] Switch
-  - [] Filter Bar
-- [] Tables
-  - [] ListTable
-  - [] DataTable
-- [] Graphs
-  - [] Line Graph
-- [] Authentication and Authorization
-- [] Reports and Views
-  - [] Reports Home
-  - [] View Management
-- [] Data Management
-  - [] View
-  - [] Edit
-  - [] Add
-  - [] Delete
-- [] Hooks
-  - [] useTable
-  - [] useGraph
-  - [] useFetchData
-  - [] useFilterAssoc
-  - [] useFormSubmitStatus
-  - [] useVisibility
-- [] Util
+- [ ] Filters
+  - [ ] Date
+  - [ ] Multi-select
+  - [ ] Single-select
+  - [ ] Search multi-select
+  - [ ] Switch
+  - [ ] Filter Bar
+- [ ] Tables
+  - [ ] ListTable
+  - [ ] DataTable
+- [ ] Graphs
+  - [ ] Line Graph
+- [ ] Authentication and Authorization
+- [ ] Reports and Views
+  - [ ] Reports Home
+  - [ ] View Management
+- [ ] Data Management
+  - [ ] View
+  - [ ] Edit
+  - [ ] Add
+  - [ ] Delete
+- [ ] Hooks
+  - [ ] useTable
+  - [ ] useGraph
+  - [ ] useFetchData
+  - [ ] useFilterAssoc
+  - [ ] useFormSubmitStatus
+  - [ ] useVisibility
+- [ ] Util
 
 ## Install
 
