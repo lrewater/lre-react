@@ -1,8 +1,7 @@
 name: Publish lre-react
 
 on:
-  release:
-    types: [push]
+  [push]
 
 jobs:
  # build:
