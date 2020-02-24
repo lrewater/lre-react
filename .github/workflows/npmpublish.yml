@@ -2,7 +2,7 @@ name: Publish lre-react
 
 on:
   release:
-    types: [created]
+    types: [push]
 
 jobs:
  # build:
