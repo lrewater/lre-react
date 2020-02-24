@@ -18,7 +18,7 @@ console.error = jest.fn();
 
 const onChange = jest.fn();
 
-describe("Invalid <DateFilter /> Configs", () => {
+describe("Invalid <DateFilter /> config", () => {
   test("<DateFilter /> without required props", () => {
     render(<DateFilter />);
     expect(console.error).toHaveBeenCalled();
