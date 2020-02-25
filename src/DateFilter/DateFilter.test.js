@@ -1,12 +1,6 @@
 import React from "react";
-import {
-  render,
-  cleanup,
-  fireEvent,
-  waitForElement
-} from "@testing-library/react";
+import { render, cleanup, fireEvent } from "@testing-library/react";
 import DateFilter from "./DateFilter";
-import UserEvent from "@testing-library/user-event";
 
 afterEach(() => {
   cleanup();
