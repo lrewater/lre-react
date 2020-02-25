@@ -10,11 +10,11 @@ const useStyles = makeStyles(theme => ({
 }));
 
 const SwitchFilter = props => {
-  const { name, label, checked, value, onChange } = props;
+  const { name, label, checked, value, variant = "outlined", onChange } = props;
   const classes = useStyles();
 
   return (
-    <FormControl className={classes.formControl} variant="outlined">
+    <FormControl className={classes.formControl} variant={variant}>
       <FormControlLabel
         control={
           <Switch
