@@ -77,6 +77,7 @@ const Filters = props => {
           valueField="ndx"
           displayField="display"
           data={data}
+          variant="filled"
           onChange={handleChange}
         />
       </div>

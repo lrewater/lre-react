@@ -3,7 +3,8 @@ import {
   render,
   cleanup,
   fireEvent,
-  waitForElement
+  waitForElement,
+  getByLabelText
 } from "@testing-library/react";
 import SingleSelectFilter from "./SingleSelectFilter";
 import UserEvent from "@testing-library/user-event";
@@ -37,8 +38,7 @@ describe("Valid <SingleSelectFilter /> configs", () => {
       getByRole,
       getByText,
       container,
-      getByLabelText,
-      debug
+      getByLabelText
     } = render(
       <SingleSelectFilter
         name="single-select"
@@ -47,14 +47,18 @@ describe("Valid <SingleSelectFilter /> configs", () => {
         data={data}
         valueField="ndx"
         displayField="display"
+        variant="outlined"
         onChange={onChange}
       />
     );
 
+    const label = getByLabelText("Single Select Filter");
     const selectNode = getByTestId("single-select");
     const selectButton = getByRole("button");
+    expect(label).toBeTruthy();
     expect(selectButton).not.toBeNull();
     expect(selectNode).not.toBeNull();
+    expect(selectButton.classList).toContain("MuiSelect-outlined");
 
     UserEvent.click(selectButton);
     await waitForElement(() => getByText("option 1"), { container });

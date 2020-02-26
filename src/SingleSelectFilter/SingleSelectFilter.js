@@ -6,7 +6,9 @@ import {
   InputLabel,
   Select,
   MenuItem,
-  OutlinedInput
+  OutlinedInput,
+  FilledInput,
+  Input
 } from "@material-ui/core";
 
 const useStyles = makeStyles(theme => ({
@@ -23,6 +25,12 @@ const useStyles = makeStyles(theme => ({
   outlinedLabel: {
     color: theme.palette.primary.main,
     backgroundColor: "#ffffff"
+  },
+  filled: {
+    fontSize: 14
+  },
+  filledLabel: {
+    color: theme.palette.primary.main
   }
 }));
 
@@ -34,21 +42,52 @@ const SingleSelectFilter = props => {
     displayField,
     data = [],
     selected = "",
+    variant = "standard",
     onChange,
     width
   } = props;
   const classes = useStyles();
 
+  const setVariantLabelClass = variant => {
+    if (variant === "outlined") {
+      return { outlined: classes.outlinedLabel };
+    } else if (variant === "filled") {
+      return { filled: classes.filledLabel };
+    } else {
+      return {};
+    }
+  };
+
+  const setVariantClass = variant => {
+    if (variant === "outlined") {
+      return { outlined: classes.outlined };
+    } else if (variant === "filled") {
+      return { filled: classes.filled };
+    } else {
+      return {};
+    }
+  };
+
+  const setVariantComponent = variant => {
+    if (variant === "outlined") {
+      return <OutlinedInput data-testid="single-select" />;
+    } else if (variant === "filled") {
+      return <FilledInput data-testid="single-select" />;
+    } else {
+      return <Input data-testid="single-select" />;
+    }
+  };
+
   return (
     <FormControl
       className={classes.formControl}
-      variant="outlined"
+      variant={variant}
       style={{ width: width || "auto" }}
     >
       <InputLabel
         id={name}
-        variant="outlined"
-        classes={{ outlined: classes.outlinedLabel }}
+        variant={variant}
+        classes={setVariantLabelClass(variant)}
       >
         {label}
       </InputLabel>
@@ -58,9 +97,9 @@ const SingleSelectFilter = props => {
         name={name}
         value={selected}
         onChange={onChange}
-        input={<OutlinedInput data-testid="single-select" />}
-        classes={{ outlined: classes.outlined }}
-        variant="outlined"
+        input={setVariantComponent(variant)}
+        classes={setVariantClass(variant)}
+        variant={variant}
       >
         {data.map(val => (
           <MenuItem key={val[valueField]} value={val[valueField]}>
@@ -78,6 +117,7 @@ SingleSelectFilter.propTypes = {
   valueField: PropTypes.string.isRequired,
   displayField: PropTypes.string.isRequired,
   data: PropTypes.array.isRequired,
+  variant: PropTypes.string,
   selected: PropTypes.any.isRequired,
   onChange: PropTypes.func.isRequired
 };
