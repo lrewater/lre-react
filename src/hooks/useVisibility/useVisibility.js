@@ -3,7 +3,7 @@ import { useState } from "react";
 const useVisibility = (defaultVisibility = false) => {
   const [visibility, setVisibility] = useState(defaultVisibility);
 
-  const handleVisibility = vis => {
+  const handleVisibility = (event, vis) => {
     if (typeof vis !== "undefined") {
       setVisibility(vis);
     } else {

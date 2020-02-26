@@ -71,5 +71,7 @@
   "files": [
     "dist"
   ],
-  "dependencies": {}
+  "dependencies": {
+    "react-csv": "^2.0.1"
+  }
 }

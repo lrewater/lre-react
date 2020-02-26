@@ -1,16 +1,21 @@
 import React, { useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import { Typography } from "@material-ui/core";
-import { DatePicker, Switch, Select } from "lre-react";
+import { DatePicker, Switch, Select, Table } from "lre-react";
 
 // create page styles
 const useStyles = makeStyles(theme => ({
   root: {
-    display: "flex",
     padding: theme.spacing(5)
+  },
+  filters: {
+    display: "flex"
   },
   item: {
     margin: theme.spacing(3)
+  },
+  table: {
+    flexGrow: 1
   }
 }));
 
@@ -41,44 +46,98 @@ const Filters = props => {
     { ndx: 3, display: "option 3" }
   ];
 
+  const tableData = [
+    { ndx: 1, first_name: "Ben", last_name: "Tyler" },
+    { ndx: 2, first_name: "Ben", last_name: "Tyler" }
+  ];
+
+  const columns = [
+    {
+      type: "category",
+      label: "ID",
+      accessor: "ndx",
+      filter: {
+        enabled: false
+      },
+      columnToggle: {
+        enabled: true
+      }
+    },
+    {
+      type: "series",
+      label: "First Name",
+      accessor: "first_name",
+      filter: {
+        enabled: false
+      },
+      columnToggle: {
+        enabled: true
+      }
+    },
+    {
+      type: "series",
+      label: "Last Name",
+      accessor: "last_name",
+      filter: {
+        enabled: false
+      },
+      columnToggle: {
+        enabled: true
+      }
+    }
+  ];
+
   return (
     <div className={classes.root}>
-      <div className={classes.item}>
-        <Typography variant="h6" gutterBottom>
-          Date Picker
-        </Typography>
-        <DatePicker
-          name="date"
-          label="Date"
-          value={filterValues.date}
-          onChange={handleChange}
-        />
+      <div className={classes.filters}>
+        <div className={classes.item}>
+          <Typography variant="h6" gutterBottom>
+            Date Picker
+          </Typography>
+          <DatePicker
+            name="date"
+            label="Date"
+            value={filterValues.date}
+            onChange={handleChange}
+          />
+        </div>
+        <div className={classes.item}>
+          <Typography variant="h6" gutterBottom>
+            Switch
+          </Typography>
+          <Switch
+            name="switch"
+            label="Switch"
+            value="switch"
+            checked={filterValues.switch}
+            onChange={handleChange}
+          />
+        </div>
+        <div className={classes.item}>
+          <Typography variant="h6" gutterBottom>
+            Single Select
+          </Typography>
+          <Select
+            name="single_select"
+            label="Single Select"
+            variant="filled"
+            valueField="ndx"
+            displayField="display"
+            data={data}
+            value={filterValues.single_select}
+            onChange={handleChange}
+          />
+        </div>
       </div>
-      <div className={classes.item}>
-        <Typography variant="h6" gutterBottom>
-          Switch
-        </Typography>
-        <Switch
-          name="switch"
-          label="Switch"
-          value="switch"
-          checked={filterValues.switch}
-          onChange={handleChange}
-        />
-      </div>
-      <div className={classes.item}>
-        <Typography variant="h6" gutterBottom>
-          Single Select
-        </Typography>
-        <Select
-          name="single_select"
-          label="Single Select"
-          variant="filled"
-          valueField="ndx"
-          displayField="display"
-          data={data}
-          value={filterValues.single_select}
-          onChange={handleChange}
+      <div className={classes.table}>
+        <Table
+          data={tableData}
+          columns={columns}
+          loading={false}
+          title="Table"
+          size="small"
+          stickyHeader={true}
+          height={750}
         />
       </div>
     </div>
