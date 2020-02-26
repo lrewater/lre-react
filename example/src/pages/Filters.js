@@ -73,11 +73,11 @@ const Filters = props => {
         <Select
           name="single_select"
           label="Single Select"
-          selected={filterValues.single_select}
+          variant="filled"
           valueField="ndx"
           displayField="display"
           data={data}
-          variant="filled"
+          value={filterValues.single_select}
           onChange={handleChange}
         />
       </div>

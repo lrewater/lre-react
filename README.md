@@ -23,10 +23,12 @@
   - [ ] Reports Home
   - [ ] View Management
 - [ ] Data Management
-  - [ ] View
-  - [ ] Edit
-  - [ ] Add
-  - [ ] Delete
+  - [ ] Editable Grid
+  - [ ] Draggable Grid
+  - [ ] View List Item
+  - [ ] Edit List Item
+  - [ ] Add List Item
+  - [ ] Delete List Item
 - [ ] Hooks
   - [ ] useTable
   - [ ] useGraph

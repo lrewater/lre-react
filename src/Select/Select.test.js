@@ -37,7 +37,7 @@ describe("Valid <Select /> configs", () => {
       <Select
         name="single-select"
         label="Single Select Filter"
-        selected={2}
+        value={2}
         data={data}
         valueField="ndx"
         displayField="display"

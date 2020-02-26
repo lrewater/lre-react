@@ -41,7 +41,7 @@ const SingleSelectFilter = props => {
     valueField,
     displayField,
     data = [],
-    selected = "",
+    value = "",
     variant = "standard",
     onChange,
     width
@@ -95,7 +95,7 @@ const SingleSelectFilter = props => {
         labelId={`${name}-label`}
         id={name}
         name={name}
-        value={selected}
+        value={value}
         onChange={onChange}
         input={setVariantComponent(variant)}
         classes={setVariantClass(variant)}
@@ -118,7 +118,7 @@ SingleSelectFilter.propTypes = {
   displayField: PropTypes.string.isRequired,
   data: PropTypes.array.isRequired,
   variant: PropTypes.string,
-  selected: PropTypes.any.isRequired,
+  value: PropTypes.any.isRequired,
   onChange: PropTypes.func.isRequired
 };
 
