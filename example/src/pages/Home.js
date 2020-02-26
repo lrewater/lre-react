@@ -1,7 +1,6 @@
 import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import { Typography, Card, CardContent, Grid } from "@material-ui/core";
-import { DateFilter } from "lre-react";
 
 // create page styles
 const useStyles = makeStyles(theme => ({
@@ -129,12 +128,6 @@ const Home = props => {
                 </Card>
               </Grid>
             </Grid>
-            <DateFilter
-              name="test"
-              label="Date"
-              value="2020-02-24"
-              onChange={() => {}}
-            />
           </section>
         </div>
       </div>

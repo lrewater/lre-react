@@ -1,6 +1,6 @@
 import React from "react";
 import { render, cleanup, fireEvent } from "@testing-library/react";
-import SwitchFilter from "./SwitchFilter";
+import Switch from "./Switch";
 
 afterEach(() => {
   cleanup();
@@ -12,18 +12,18 @@ console.error = jest.fn();
 
 const onChange = jest.fn();
 
-describe("Invalid <SwitchFilter /> config", () => {
-  test("<SwitchFilter /> without required props", () => {
-    render(<SwitchFilter />);
+describe("Invalid <Switch /> config", () => {
+  test("<Switch /> without required props", () => {
+    render(<Switch />);
     expect(console.error).toHaveBeenCalled();
   });
 });
 
-describe("Valid <SwitchFilter /> configs", () => {
-  test("<SwitchFilter /> with required props", () => {
+describe("Valid <Switch /> configs", () => {
+  test("<Switch /> with required props", () => {
     const checkState = true;
     const { getByLabelText, getByText } = render(
-      <SwitchFilter
+      <Switch
         name="switch-filter"
         label={checkState ? "Active" : "Inactive"}
         checked={checkState}

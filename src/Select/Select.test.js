@@ -1,12 +1,6 @@
 import React from "react";
-import {
-  render,
-  cleanup,
-  fireEvent,
-  waitForElement,
-  getByLabelText
-} from "@testing-library/react";
-import SingleSelectFilter from "./SingleSelectFilter";
+import { render, cleanup, waitForElement } from "@testing-library/react";
+import Select from "./Select";
 import UserEvent from "@testing-library/user-event";
 
 afterEach(() => {
@@ -19,15 +13,15 @@ console.error = jest.fn();
 
 const onChange = jest.fn();
 
-describe("Invalid <SingleSelectFilter /> config", () => {
-  test("<SingleSelectFilter /> without required props", () => {
-    render(<SingleSelectFilter />);
+describe("Invalid <Select /> config", () => {
+  test("<Select /> without required props", () => {
+    render(<Select />);
     expect(console.error).toHaveBeenCalled();
   });
 });
 
-describe("Valid <SingleSelectFilter /> configs", () => {
-  test("<SingleSelectFilter /> standard use case", async () => {
+describe("Valid <Select /> configs", () => {
+  test("<Select /> standard use case", async () => {
     const data = [
       { ndx: 1, display: "option 1" },
       { ndx: 2, display: "option 2" },
@@ -40,7 +34,7 @@ describe("Valid <SingleSelectFilter /> configs", () => {
       container,
       getByLabelText
     } = render(
-      <SingleSelectFilter
+      <Select
         name="single-select"
         label="Single Select Filter"
         selected={2}

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import { Typography } from "@material-ui/core";
-import { DateFilter, SwitchFilter, SingleSelectFilter } from "lre-react";
+import { DatePicker, Switch, Select } from "lre-react";
 
 // create page styles
 const useStyles = makeStyles(theme => ({
@@ -45,9 +45,9 @@ const Filters = props => {
     <div className={classes.root}>
       <div className={classes.item}>
         <Typography variant="h6" gutterBottom>
-          Date Filter
+          Date Picker
         </Typography>
-        <DateFilter
+        <DatePicker
           name="date"
           label="Date"
           value={filterValues.date}
@@ -56,9 +56,9 @@ const Filters = props => {
       </div>
       <div className={classes.item}>
         <Typography variant="h6" gutterBottom>
-          Switch Filter
+          Switch
         </Typography>
-        <SwitchFilter
+        <Switch
           name="switch"
           label="Switch"
           value="switch"
@@ -68,9 +68,9 @@ const Filters = props => {
       </div>
       <div className={classes.item}>
         <Typography variant="h6" gutterBottom>
-          Single Select Filter
+          Single Select
         </Typography>
-        <SingleSelectFilter
+        <Select
           name="single_select"
           label="Single Select"
           selected={filterValues.single_select}
