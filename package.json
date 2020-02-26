@@ -72,6 +72,7 @@
     "dist"
   ],
   "dependencies": {
+    "clsx": "^1.1.0",
     "react-csv": "^2.0.1"
   }
 }

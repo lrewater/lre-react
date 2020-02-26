@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import { Typography } from "@material-ui/core";
-import { DatePicker, Switch, Select, Table } from "lre-react";
+import { DatePicker, Switch, Select, Table, EditableTable } from "lre-react";
 
 // create page styles
 const useStyles = makeStyles(theme => ({
@@ -87,6 +87,30 @@ const Filters = props => {
     }
   ];
 
+  const editableColumns = [
+    -{
+      id: "ndx",
+      numeric: false,
+      disablePadding: true,
+      label: "ID",
+      chip: false
+    },
+    {
+      id: "first_name",
+      numeric: false,
+      disablePadding: false,
+      label: "First Name",
+      chip: false
+    },
+    {
+      id: "last_name",
+      numeric: false,
+      disablePadding: false,
+      label: "Last Name",
+      chip: false
+    }
+  ];
+
   return (
     <div className={classes.root}>
       <div className={classes.filters}>
@@ -137,7 +161,16 @@ const Filters = props => {
           title="Table"
           size="small"
           stickyHeader={true}
-          height={750}
+          height={300}
+        />
+      </div>
+      <div className={classes.table}>
+        <EditableTable
+          data={tableData}
+          columns={editableColumns}
+          title="Table"
+          handleRowClick={() => {}}
+          handleDelete={() => {}}
         />
       </div>
     </div>
