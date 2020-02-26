@@ -23,7 +23,7 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-const DateFilter = props => {
+const DatePicker = props => {
   const { name, label, value, onChange, variant = "standard" } = props;
   const classes = useStyles();
 
@@ -50,11 +50,11 @@ const DateFilter = props => {
   );
 };
 
-DateFilter.propTypes = {
+DatePicker.propTypes = {
   name: PropTypes.string.isRequired,
   label: PropTypes.string.isRequired,
   value: PropTypes.string.isRequired,
   onChange: PropTypes.func.isRequired
 };
 
-export default DateFilter;
+export default DatePicker;

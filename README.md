@@ -7,15 +7,15 @@
 ## Roadmap
 
 - [ ] Filters
-  - [ ] Date
-  - [ ] Multi-select
-  - [ ] Single-select
+  - [x] Date
+  - [x] Multi-select
+  - [x] Single-select
   - [ ] Search multi-select
-  - [ ] Switch
+  - [x] Switch
   - [ ] Filter Bar
 - [ ] Tables
-  - [ ] ListTable
-  - [ ] DataTable
+  - [x] ListTable
+  - [x] DataTable
 - [ ] Graphs
   - [ ] Line Graph
 - [ ] Authentication and Authorization
@@ -23,17 +23,19 @@
   - [ ] Reports Home
   - [ ] View Management
 - [ ] Data Management
-  - [ ] View
-  - [ ] Edit
-  - [ ] Add
-  - [ ] Delete
+  - [ ] Editable Grid
+  - [ ] Draggable Grid
+  - [ ] View List Item
+  - [ ] Edit List Item
+  - [ ] Add List Item
+  - [ ] Delete List Item
 - [ ] Hooks
-  - [ ] useTable
-  - [ ] useGraph
+  - [x] useTable
+  - [x] useGraph
   - [ ] useFetchData
   - [ ] useFilterAssoc
   - [ ] useFormSubmitStatus
-  - [ ] useVisibility
+  - [x] useVisibility
 - [ ] Util
 
 ## Install

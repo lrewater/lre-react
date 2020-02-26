@@ -1,12 +1,6 @@
 import React from "react";
-import {
-  render,
-  cleanup,
-  fireEvent,
-  waitForElement
-} from "@testing-library/react";
-import DateFilter from "./DateFilter";
-import UserEvent from "@testing-library/user-event";
+import { render, cleanup, fireEvent } from "@testing-library/react";
+import DatePicker from "./DatePicker";
 
 afterEach(() => {
   cleanup();
@@ -18,17 +12,17 @@ console.error = jest.fn();
 
 const onChange = jest.fn();
 
-describe("Invalid <DateFilter /> config", () => {
-  test("<DateFilter /> without required props", () => {
-    render(<DateFilter />);
+describe("Invalid <DatePicker /> config", () => {
+  test("<DatePicker /> without required props", () => {
+    render(<DatePicker />);
     expect(console.error).toHaveBeenCalled();
   });
 });
 
-describe("Valid <DateFilter /> configs", () => {
-  test("<DateFilter /> standard use case", () => {
+describe("Valid <DatePicker /> configs", () => {
+  test("<DatePicker /> standard use case", () => {
     const { getByTestId, getByLabelText } = render(
-      <DateFilter
+      <DatePicker
         name="date"
         label="Date Filter"
         value="2020-02-24"
@@ -50,9 +44,9 @@ describe("Valid <DateFilter /> configs", () => {
     expect(onChange).toHaveBeenCalled();
   });
 
-  test("<DateFilter /> outlined variant", () => {
+  test("<DatePicker /> outlined variant", () => {
     const { getByLabelText } = render(
-      <DateFilter
+      <DatePicker
         variant="outlined"
         name="date"
         label="Date Filter"
@@ -64,9 +58,9 @@ describe("Valid <DateFilter /> configs", () => {
     expect(label.classList).toContain("MuiOutlinedInput-input");
   });
 
-  test("<DateFilter /> filled variant", () => {
+  test("<DatePicker /> filled variant", () => {
     const { getByLabelText } = render(
-      <DateFilter
+      <DatePicker
         variant="filled"
         name="date"
         label="Date Filter"

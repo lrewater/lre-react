@@ -1,7 +1,11 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { makeStyles } from "@material-ui/core/styles";
-import { FormControl, FormControlLabel, Switch } from "@material-ui/core";
+import {
+  FormControl,
+  FormControlLabel,
+  Switch as MaterialSwitch
+} from "@material-ui/core";
 
 const useStyles = makeStyles(theme => ({
   formControl: {
@@ -9,7 +13,7 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-const SwitchFilter = props => {
+const Switch = props => {
   const { name, label, checked, value, variant = "outlined", onChange } = props;
   const classes = useStyles();
 
@@ -17,7 +21,7 @@ const SwitchFilter = props => {
     <FormControl className={classes.formControl} variant={variant}>
       <FormControlLabel
         control={
-          <Switch
+          <MaterialSwitch
             data-testid="switch"
             color="primary"
             name={name}
@@ -33,7 +37,7 @@ const SwitchFilter = props => {
   );
 };
 
-SwitchFilter.propTypes = {
+Switch.propTypes = {
   name: PropTypes.string.isRequired,
   label: PropTypes.string.isRequired,
   checked: PropTypes.bool.isRequired,
@@ -41,4 +45,4 @@ SwitchFilter.propTypes = {
   onChange: PropTypes.func.isRequired
 };
 
-export default SwitchFilter;
+export default Switch;
