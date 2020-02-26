@@ -7,11 +7,11 @@
 ## Roadmap
 
 - [ ] Filters
-  - [ ] Date
+  - [x] Date
   - [ ] Multi-select
-  - [ ] Single-select
+  - [x] Single-select
   - [ ] Search multi-select
-  - [ ] Switch
+  - [x] Switch
   - [ ] Filter Bar
 - [ ] Tables
   - [ ] ListTable
