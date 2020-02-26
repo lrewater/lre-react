@@ -8,14 +8,14 @@
 
 - [ ] Filters
   - [x] Date
-  - [ ] Multi-select
+  - [x] Multi-select
   - [x] Single-select
   - [ ] Search multi-select
   - [x] Switch
   - [ ] Filter Bar
 - [ ] Tables
-  - [ ] ListTable
-  - [ ] DataTable
+  - [x] ListTable
+  - [x] DataTable
 - [ ] Graphs
   - [ ] Line Graph
 - [ ] Authentication and Authorization
@@ -30,12 +30,12 @@
   - [ ] Add List Item
   - [ ] Delete List Item
 - [ ] Hooks
-  - [ ] useTable
-  - [ ] useGraph
+  - [x] useTable
+  - [x] useGraph
   - [ ] useFetchData
   - [ ] useFilterAssoc
   - [ ] useFormSubmitStatus
-  - [ ] useVisibility
+  - [x] useVisibility
 - [ ] Util
 
 ## Install
