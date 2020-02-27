@@ -75,7 +75,7 @@ const EditableTableFilters = props => {
       <Typography variant="h6">Filters</Typography>
       {filtersData.map(filter => (
         <FormControl
-          key={filter.id}
+          key={Math.random() * 9999999}
           id={filter.id}
           className={classes.formControl}
         >

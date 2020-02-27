@@ -55,7 +55,7 @@ const EditableTableHead = props => {
         )}
         {columns.map(row => (
           <TableCell
-            key={row.id}
+            key={Math.random() * 9999999}
             align={row.numeric ? "center" : "left"}
             sortDirection={orderBy === row.id ? order : false}
             classes={{
