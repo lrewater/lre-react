@@ -3,7 +3,8 @@ import { Route, BrowserRouter, Switch } from "react-router-dom";
 import { MuiThemeProvider } from "@material-ui/core/styles";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import NotFound from "./components/NotFound";
-import Loading from "./components/Loading";
+// import Loading from "./components/Loading";
+import { Loading } from "lre-react";
 import theme from "./theme";
 
 const Home = React.lazy(() => import("./pages/Home"));
