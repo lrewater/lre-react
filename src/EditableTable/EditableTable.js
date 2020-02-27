@@ -5,6 +5,7 @@ import Table from "@material-ui/core/Table";
 import TableBody from "@material-ui/core/TableBody";
 import TableCell from "@material-ui/core/TableCell";
 import TableRow from "@material-ui/core/TableRow";
+import TablePagination from "@material-ui/core/TablePagination";
 import Checkbox from "@material-ui/core/Checkbox";
 import Chip from "@material-ui/core/Chip";
 
@@ -44,6 +45,17 @@ const EditableTable = props => {
   const [originalData, setOriginalData] = useState([]);
   const [tableData, setTableData] = useState([]);
   const [chipColorAssignments, setChipColorAssignments] = useState(null);
+  const [activePage, setActivePage] = useState(0);
+  const rowsPerPage = 60;
+
+  /**
+   * Event handler for table pagination
+   * @param {*} event
+   * @param {*} newPage
+   */
+  const handleChangePage = (event, newPage) => {
+    setActivePage(newPage);
+  };
 
   const handleRequestSort = property => {
     const isDesc = orderBy === property && order === "desc";
@@ -253,6 +265,14 @@ const EditableTable = props => {
             )}
           </TableBody>
         </Table>
+        <TablePagination
+          rowsPerPageOptions={[30]}
+          component="div"
+          count={tableData.length}
+          rowsPerPage={rowsPerPage}
+          page={activePage}
+          onChangePage={handleChangePage}
+        />
       </div>
     </div>
   );
