@@ -13,7 +13,8 @@ const useStyles = makeStyles(theme => ({
   },
   outlinedLabel: {
     color: theme.palette.primary.main,
-    backgroundColor: "#ffffff"
+    backgroundColor: theme.palette.background.default,
+    padding: theme.spacing(0, 0.75)
   },
   filled: {
     fontSize: 14
@@ -24,7 +25,14 @@ const useStyles = makeStyles(theme => ({
 }));
 
 const DatePicker = props => {
-  const { name, label, value, onChange, variant = "standard" } = props;
+  const {
+    name,
+    label,
+    value,
+    onChange,
+    variant = "standard",
+    fullWidth = false
+  } = props;
   const classes = useStyles();
 
   return (
@@ -34,6 +42,7 @@ const DatePicker = props => {
       variant={variant}
       label={label}
       type="date"
+      fullWidth={fullWidth}
       name={name}
       value={value}
       className={classes.textField}
@@ -54,6 +63,8 @@ DatePicker.propTypes = {
   name: PropTypes.string.isRequired,
   label: PropTypes.string.isRequired,
   value: PropTypes.string.isRequired,
+  variant: PropTypes.string,
+  fullWidth: PropTypes.bool,
   onChange: PropTypes.func.isRequired
 };
 
