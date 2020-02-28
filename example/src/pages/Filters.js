@@ -5,9 +5,9 @@ import {
   DatePicker,
   Switch,
   Select,
+  TextField,
   Table,
-  EditableTable,
-  Loading
+  EditableTable
 } from "lre-react";
 
 // create page styles
@@ -31,7 +31,8 @@ const Filters = props => {
   const [filterValues, setFilterValues] = useState({
     date: "2020-02-25",
     switch: true,
-    single_select: 2
+    single_select: 2,
+    text_field: "Example"
   });
 
   const handleChange = event => {
@@ -128,6 +129,7 @@ const Filters = props => {
           <DatePicker
             name="date"
             label="Date"
+            variant="outlined"
             value={filterValues.date}
             onChange={handleChange}
           />
@@ -151,11 +153,23 @@ const Filters = props => {
           <Select
             name="single_select"
             label="Single Select"
-            variant="filled"
+            variant="outlined"
             valueField="ndx"
             displayField="display"
             data={data}
             value={filterValues.single_select}
+            onChange={handleChange}
+          />
+        </div>
+        <div className={classes.item}>
+          <Typography variant="h6" gutterBottom>
+            TextField
+          </Typography>
+          <TextField
+            name="text_field"
+            label="Text Field"
+            value={filterValues.text_field}
+            variant="outlined"
             onChange={handleChange}
           />
         </div>
@@ -179,9 +193,6 @@ const Filters = props => {
           handleRowClick={() => {}}
           handleDelete={() => {}}
         />
-      </div>
-      <div>
-        <Loading />
       </div>
     </div>
   );
