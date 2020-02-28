@@ -71,4 +71,21 @@ describe("Valid <DatePicker /> configs", () => {
     const label = getByLabelText("Date Filter");
     expect(label.classList).toContain("MuiFilledInput-input");
   });
+
+  test("<DatePicker /> fullWidth", () => {
+    const { getByLabelText, getByTestId } = render(
+      <DatePicker
+        variant="filled"
+        fullWidth
+        name="date"
+        label="Date Filter"
+        value="2020-02-24"
+        onChange={onChange}
+      />
+    );
+    const filter = getByTestId("date-filter");
+    const label = getByLabelText("Date Filter");
+    expect(filter.classList).toContain("MuiFormControl-fullWidth");
+    expect(label.classList).toContain("MuiFilledInput-input");
+  });
 });

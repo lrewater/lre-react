@@ -1,14 +1,14 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { makeStyles } from "@material-ui/core/styles";
-import { TextField } from "@material-ui/core";
+import { TextField as MaterialTextField } from "@material-ui/core";
 
 const useStyles = makeStyles(theme => ({
   textField: {
     margin: theme.spacing(1)
   },
   outlined: {
-    border: `1.5px solid ${theme.palette.primary.main}`,
+    border: `1.5px solid ${theme.palette.primary.main}!important`,
     fontSize: 14
   },
   outlinedLabel: {
@@ -24,42 +24,65 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-const DatePicker = props => {
+const TextField = props => {
+  const classes = useStyles();
   const {
     name,
     label,
+    type = "text",
     value,
-    onChange,
-    variant = "standard",
-    fullWidth = false
+    variant,
+    fullWidth = false,
+    onChange
   } = props;
-  const classes = useStyles();
+
+  const setVariantLabelClass = variant => {
+    if (variant === "outlined") {
+      return { outlined: classes.outlinedLabel };
+    } else if (variant === "filled") {
+      return { filled: classes.filledLabel };
+    } else {
+      return {};
+    }
+  };
+
+  const setVariantClass = variant => {
+    if (variant === "outlined") {
+      console.log("outlined");
+      return { root: classes.outlined };
+    } else if (variant === "filled") {
+      return { root: classes.filled };
+    } else {
+      return {};
+    }
+  };
 
   return (
-    <TextField
-      data-testid="date-filter"
+    <MaterialTextField
+      data-testid="text-field"
       id={name}
       variant={variant}
       label={label}
-      type="date"
       fullWidth={fullWidth}
+      type={type}
       name={name}
       value={value}
       className={classes.textField}
       onChange={onChange}
+      placeholder={label}
       InputProps={{
         color: "primary",
-        classes: { root: classes[variant] }
+        classes: setVariantClass(variant)
       }}
       InputLabelProps={{
         shrink: true,
-        classes: { root: classes[`${variant}Label`] }
+        classes: setVariantLabelClass(variant)
       }}
     />
   );
 };
 
-DatePicker.propTypes = {
+TextField.propTypes = {
   name: PropTypes.string.isRequired,
   label: PropTypes.string.isRequired,
   value: PropTypes.string.isRequired,
@@ -68,4 +91,4 @@ DatePicker.propTypes = {
   onChange: PropTypes.func.isRequired
 };
 
-export default DatePicker;
+export default TextField;
