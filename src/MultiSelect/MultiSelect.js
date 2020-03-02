@@ -9,6 +9,8 @@ import {
   Checkbox,
   ListItemText,
   OutlinedInput,
+  FilledInput,
+  Input,
   Button,
   Divider
 } from "@material-ui/core";
@@ -26,7 +28,14 @@ const useStyles = makeStyles(theme => ({
   },
   outlinedLabel: {
     color: theme.palette.primary.main,
-    backgroundColor: "#ffffff"
+    backgroundColor: theme.palette.background.default,
+    padding: theme.spacing(0, 0.75)
+  },
+  filled: {
+    fontSize: 14
+  },
+  filledLabel: {
+    color: theme.palette.primary.main
   },
   controls: {
     position: "absolute",
@@ -53,9 +62,55 @@ const MultiSelect = props => {
     displayField,
     data = [],
     value = "",
+    variant = "standard",
     onChange
   } = props;
   const classes = useStyles();
+
+  /**
+   * Utility to assign the correct label class based
+   * on the variant
+   * @param {string} variant i.e. standard, filled, outlined
+   */
+  const setVariantLabelClass = variant => {
+    if (variant === "outlined") {
+      return { outlined: classes.outlinedLabel };
+    } else if (variant === "filled") {
+      return { filled: classes.filledLabel };
+    } else {
+      return {};
+    }
+  };
+
+  /**
+   * Utility to assign the correct class based
+   * on the variant
+   * @param {string} variant i.e. standard, filled, outlined
+   */
+  const setVariantClass = variant => {
+    if (variant === "outlined") {
+      return { outlined: classes.outlined };
+    } else if (variant === "filled") {
+      return { filled: classes.filled };
+    } else {
+      return {};
+    }
+  };
+
+  /**
+   * Utility to return the correct component based
+   * on the variant
+   * @param {string} variant i.e. standard, filled, outlined
+   */
+  const setVariantComponent = variant => {
+    if (variant === "outlined") {
+      return <OutlinedInput data-testid="multi-select" />;
+    } else if (variant === "filled") {
+      return <FilledInput data-testid="multi-select" />;
+    } else {
+      return <Input data-testid="multi-select" />;
+    }
+  };
 
   /**
    * Function used to render the text associated with the currently
@@ -70,10 +125,36 @@ const MultiSelect = props => {
     return textValues.join(", ");
   };
 
+  /**
+   * Event handler for the MultiSelect
+   * This handler is necessary for implementing the select all/none
+   * custom controls
+   * @param {object} event JavaScript Event Object
+   */
+  const handleChange = event => {
+    const { value, name } = event.target;
+    const text = event.nativeEvent.target.textContent;
+    if (value.includes("all/none") && text === "Select All") {
+      handleSelectAll(name);
+    } else if (value.includes("all/none") && text === "Select None") {
+      handleSelectNone(name);
+    } else {
+      onChange(event);
+    }
+  };
+
+  /**
+   * Event handler for selecting all values in dropdown
+   * @param {string} name select name attribute value
+   */
   const handleSelectAll = name => {
     onChange({ target: { name, value: data.map(d => d[valueField]) } });
   };
 
+  /**
+   * Event handler for de-selecting all values in dropdown
+   * @param {string} name select name attribute value
+   */
   const handleSelectNone = name => {
     onChange({ target: { name, value: [] } });
   };
@@ -82,8 +163,8 @@ const MultiSelect = props => {
     <FormControl className={classes.formControl} variant="outlined">
       <InputLabel
         id={name}
-        variant="outlined"
-        classes={{ outlined: classes.outlinedLabel }}
+        variant={variant}
+        classes={setVariantLabelClass(variant)}
       >
         {label}
       </InputLabel>
@@ -93,16 +174,19 @@ const MultiSelect = props => {
         name={name}
         multiple
         value={value}
-        onChange={onChange}
-        input={<OutlinedInput data-testid="multi-select" />}
-        classes={{ outlined: classes.outlined }}
-        variant="outlined"
+        onChange={handleChange}
+        input={setVariantComponent(variant)}
+        classes={setVariantClass(variant)}
+        variant={variant}
         renderValue={selections => setSelectedText(selections)}
         MenuProps={MenuProps}
       >
         {data.length > 0 && (
           <MenuItem value="all/none">
-            <Button color="primary" onClick={() => handleSelectAll(name)}>
+            <Button
+              color="primary"
+              // onClick={event => handleSelectAll(event, name)}
+            >
               Select All
             </Button>
             <Button color="primary" onClick={() => handleSelectNone(name)}>
@@ -132,6 +216,7 @@ MultiSelect.propTypes = {
   displayField: PropTypes.string.isRequired,
   data: PropTypes.array.isRequired,
   value: PropTypes.array.isRequired,
+  variant: PropTypes.string,
   onChange: PropTypes.func.isRequired
 };
 

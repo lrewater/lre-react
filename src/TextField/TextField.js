@@ -48,7 +48,6 @@ const TextField = props => {
 
   const setVariantClass = variant => {
     if (variant === "outlined") {
-      console.log("outlined");
       return { root: classes.outlined };
     } else if (variant === "filled") {
       return { root: classes.filled };

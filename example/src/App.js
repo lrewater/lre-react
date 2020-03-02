@@ -8,6 +8,7 @@ import theme from "./theme";
 
 const Home = React.lazy(() => import("./pages/Home"));
 const Filters = React.lazy(() => import("./pages/Filters"));
+const Tables = React.lazy(() => import("./pages/Tables"));
 
 const App = () => {
   return (
@@ -18,6 +19,7 @@ const App = () => {
           <Switch>
             <Route path="/" exact component={Home} />
             <Route path="/filters" exact component={Filters} />
+            <Route path="/tables" exact component={Tables} />
 
             <Route path="*">
               <NotFound />

@@ -49,6 +49,11 @@ const SingleSelectFilter = props => {
   } = props;
   const classes = useStyles();
 
+  /**
+   * Utility to assign the correct label class based
+   * on the variant
+   * @param {string} variant i.e. standard, filled, outlined
+   */
   const setVariantLabelClass = variant => {
     if (variant === "outlined") {
       return { outlined: classes.outlinedLabel };
@@ -59,6 +64,11 @@ const SingleSelectFilter = props => {
     }
   };
 
+  /**
+   * Utility to assign the correct class based
+   * on the variant
+   * @param {string} variant i.e. standard, filled, outlined
+   */
   const setVariantClass = variant => {
     if (variant === "outlined") {
       return { outlined: classes.outlined };
@@ -69,6 +79,11 @@ const SingleSelectFilter = props => {
     }
   };
 
+  /**
+   * Utility to return the correct component based
+   * on the variant
+   * @param {string} variant i.e. standard, filled, outlined
+   */
   const setVariantComponent = variant => {
     if (variant === "outlined") {
       return <OutlinedInput data-testid="single-select" />;

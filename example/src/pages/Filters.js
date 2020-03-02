@@ -1,14 +1,7 @@
 import React, { useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import { Typography } from "@material-ui/core";
-import {
-  DatePicker,
-  Switch,
-  Select,
-  TextField,
-  Table,
-  EditableTable
-} from "lre-react";
+import { DatePicker, Switch, Select, MultiSelect, TextField } from "lre-react";
 
 // create page styles
 const useStyles = makeStyles(theme => ({
@@ -32,6 +25,7 @@ const Filters = props => {
     date: "2020-02-25",
     switch: true,
     single_select: 2,
+    multi_select: [2],
     text_field: "Example"
   });
 
@@ -52,71 +46,6 @@ const Filters = props => {
     { ndx: 1, display: "option 1" },
     { ndx: 2, display: "option 2" },
     { ndx: 3, display: "option 3" }
-  ];
-
-  const tableData = [
-    { ndx: 1, first_name: "Ben", last_name: "Tyler" },
-    { ndx: 2, first_name: "Ben", last_name: "Tyler" }
-  ];
-
-  const columns = [
-    {
-      type: "category",
-      label: "ID",
-      accessor: "ndx",
-      filter: {
-        enabled: false
-      },
-      columnToggle: {
-        enabled: true
-      }
-    },
-    {
-      type: "series",
-      label: "First Name",
-      accessor: "first_name",
-      filter: {
-        enabled: false
-      },
-      columnToggle: {
-        enabled: true
-      }
-    },
-    {
-      type: "series",
-      label: "Last Name",
-      accessor: "last_name",
-      filter: {
-        enabled: false
-      },
-      columnToggle: {
-        enabled: true
-      }
-    }
-  ];
-
-  const editableColumns = [
-    -{
-      id: "ndx",
-      numeric: false,
-      disablePadding: true,
-      label: "ID",
-      chip: false
-    },
-    {
-      id: "first_name",
-      numeric: false,
-      disablePadding: false,
-      label: "First Name",
-      chip: false
-    },
-    {
-      id: "last_name",
-      numeric: false,
-      disablePadding: false,
-      label: "Last Name",
-      chip: false
-    }
   ];
 
   return (
@@ -163,6 +92,21 @@ const Filters = props => {
         </div>
         <div className={classes.item}>
           <Typography variant="h6" gutterBottom>
+            Multi Select
+          </Typography>
+          <MultiSelect
+            name="multi_select"
+            label="Multi Select"
+            variant="outlined"
+            valueField="ndx"
+            displayField="display"
+            data={data}
+            value={filterValues.multi_select}
+            onChange={handleChange}
+          />
+        </div>
+        <div className={classes.item}>
+          <Typography variant="h6" gutterBottom>
             TextField
           </Typography>
           <TextField
@@ -173,26 +117,6 @@ const Filters = props => {
             onChange={handleChange}
           />
         </div>
-      </div>
-      <div className={classes.table}>
-        <Table
-          data={tableData}
-          columns={columns}
-          loading={false}
-          title="Table"
-          size="small"
-          stickyHeader={true}
-          height={300}
-        />
-      </div>
-      <div className={classes.table}>
-        <EditableTable
-          data={tableData}
-          columns={editableColumns}
-          title="Table"
-          handleRowClick={() => {}}
-          handleDelete={() => {}}
-        />
       </div>
     </div>
   );
