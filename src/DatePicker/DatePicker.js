@@ -13,7 +13,7 @@ const useStyles = makeStyles(theme => ({
   },
   outlinedLabel: {
     color: theme.palette.primary.main,
-    backgroundColor: theme.palette.background.default,
+    backgroundColor: "#ffffff",
     padding: theme.spacing(0, 0.75)
   },
   filled: {
