@@ -89,7 +89,7 @@ const Tables = props => {
   ];
 
   const editableColumns = [
-    -{
+    {
       id: "ndx",
       numeric: false,
       disablePadding: true,
