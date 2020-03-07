@@ -1,7 +1,14 @@
 import React, { useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import { Typography } from "@material-ui/core";
-import { DatePicker, Switch, Select, MultiSelect, TextField } from "lre-react";
+import {
+  DatePicker,
+  Switch,
+  Select,
+  MultiSelect,
+  TextField,
+  TextArea
+} from "lre-react";
 
 // create page styles
 const useStyles = makeStyles(theme => ({
@@ -26,7 +33,8 @@ const Filters = props => {
     switch: true,
     single_select: 2,
     multi_select: [2],
-    text_field: "Example"
+    text_field: "Example",
+    text_area: "longer example text"
   });
 
   const handleChange = event => {
@@ -113,6 +121,19 @@ const Filters = props => {
             name="text_field"
             label="Text Field"
             value={filterValues.text_field}
+            variant="outlined"
+            onChange={handleChange}
+          />
+        </div>
+        <div className={classes.item}>
+          <Typography variant="h6" gutterBottom>
+            TextArea
+          </Typography>
+          <TextArea
+            name="text_area"
+            label="Text Area"
+            value={filterValues.text_area}
+            rows="8"
             variant="outlined"
             onChange={handleChange}
           />
