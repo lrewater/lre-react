@@ -183,15 +183,8 @@ const MultiSelect = props => {
       >
         {data.length > 0 && (
           <MenuItem value="all/none">
-            <Button
-              color="primary"
-              // onClick={event => handleSelectAll(event, name)}
-            >
-              Select All
-            </Button>
-            <Button color="primary" onClick={() => handleSelectNone(name)}>
-              Select None
-            </Button>
+            <Button color="primary">Select All</Button>
+            <Button color="primary">Select None</Button>
           </MenuItem>
         )}
         {data.length > 0 && <Divider />}
