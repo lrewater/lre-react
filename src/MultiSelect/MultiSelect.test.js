@@ -213,7 +213,7 @@ describe("Valid <MultiSelect /> config", () => {
     UserEvent.click(itemClickable);
     expect(ul.querySelectorAll("li").length).toBe(4);
 
-    expect(handleChange).toHaveBeenCalled();
+    expect(handleChange).toHaveBeenCalledTimes(1);
     expect(selected.target.value).toEqual(expect.arrayContaining([]));
   });
 });
