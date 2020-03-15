@@ -37,6 +37,11 @@ const TextArea = props => {
     onChange
   } = props;
 
+  /**
+   * Utility function used to set proper
+   * styling based on variant
+   * @param {*} variant i.e. standard, outlined, filled
+   */
   const setVariantLabelClass = variant => {
     if (variant === "outlined") {
       return { outlined: classes.outlinedLabel };
@@ -47,6 +52,11 @@ const TextArea = props => {
     }
   };
 
+  /**
+   * Utility function used to set proper
+   * styling based on variant
+   * @param {*} variant i.e. standard, outlined, filled
+   */
   const setVariantClass = variant => {
     if (variant === "outlined") {
       return { root: classes.outlined };
