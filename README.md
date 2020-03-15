@@ -12,8 +12,8 @@
   - [x] Single-select
   - [ ] Search multi-select
   - [x] Switch
-  - [ ] TextField
-  - [ ] TextArea
+  - [x] TextField
+  - [x] TextArea
   - [ ] Filter Bar
 - [ ] Tables
   - [x] ListTable
