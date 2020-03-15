@@ -1,4 +1,4 @@
-name: Publish lre-react
+name: Publish lre-react Github Package
 
 on:
   push:
