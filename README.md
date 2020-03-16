@@ -2,7 +2,11 @@
 
 >
 
-[![NPM](https://img.shields.io/npm/v/lre-react.svg)](https://www.npmjs.com/package/lre-react) [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
+[![NPM](https://img.shields.io/npm/v/@lrewater/lre-react.svg)](https://www.npmjs.com/package/lre-react) [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
+
+## Overview
+
+lre-react is a library of reusable components tailored specifically to LRE Water use cases. The components are meant for use with React and are an extension of the [Material UI framework](https://material-ui.com/). This library has grown out of the LRE Starter kKt and is meant to compliment the Starter Kit as well as any other React project.
 
 ## Roadmap
 
@@ -12,8 +16,8 @@
   - [x] Single-select
   - [ ] Search multi-select
   - [x] Switch
-  - [ ] TextField
-  - [ ] TextArea
+  - [x] TextField
+  - [x] TextArea
   - [ ] Filter Bar
 - [ ] Tables
   - [x] ListTable
@@ -49,15 +53,27 @@ npm install --save lre-react
 ## Usage
 
 ```jsx
-import React, { Component } from "react";
+import React, { useState } from "react";
 
-import MyComponent from "lre-react";
+import { TextField } from "@lrewater/lre-react";
 
-class Example extends Component {
-  render() {
-    return <MyComponent />;
-  }
-}
+const Example = props => {
+  const [value, setValue] = useState("Example Value");
+
+  const handleChange = event => {
+    setValue(event.target.value);
+  };
+  return (
+    <form>
+      <TextField
+        name="example"
+        label="Example"
+        value={value}
+        onChange={handleChange}
+      />
+    </form>
+  );
+};
 ```
 
 ## License
