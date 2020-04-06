@@ -47,7 +47,7 @@ lre-react is a library of reusable components tailored specifically to LRE Water
 ## Install
 
 ```bash
-npm install --save lre-react
+npm install --save @lrewater/lre-react
 ```
 
 ## Usage
