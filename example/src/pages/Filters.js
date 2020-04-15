@@ -154,8 +154,24 @@ const Filters = props => {
       </Typography>
       <div className={classes.row}>
         <div className={classes.item}>
-          <Typography variant="h6" gutterBottom>
-            Single Select
+          <Typography variant="body1" gutterBottom>
+            Standard Select
+          </Typography>
+          <Select
+            name="single_select"
+            label="Single Select"
+            variant="standard"
+            valueField="ndx"
+            displayField="display"
+            data={data}
+            value={filterValues.single_select}
+            onChange={handleChange}
+            width={200}
+          />
+        </div>
+        <div className={classes.item}>
+          <Typography variant="body1" gutterBottom>
+            Outlined Select
           </Typography>
           <Select
             name="single_select"
@@ -166,10 +182,29 @@ const Filters = props => {
             data={data}
             value={filterValues.single_select}
             onChange={handleChange}
+            width={200}
           />
         </div>
         <div className={classes.item}>
-          <Typography variant="h6" gutterBottom>
+          <Typography variant="body1" gutterBottom>
+            Filled Select
+          </Typography>
+          <Select
+            name="single_select"
+            label="Single Select"
+            variant="filled"
+            valueField="ndx"
+            displayField="display"
+            data={data}
+            value={filterValues.single_select}
+            onChange={handleChange}
+            width={200}
+          />
+        </div>
+      </div>
+      <div className={classes.row}>
+        <div className={classes.item}>
+          <Typography variant="body1" gutterBottom>
             Multi Select
           </Typography>
           <MultiSelect
