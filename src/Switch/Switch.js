@@ -14,7 +14,15 @@ const useStyles = makeStyles(theme => ({
 }));
 
 const Switch = props => {
-  const { name, label, checked, value, variant = "outlined", onChange } = props;
+  const {
+    name,
+    label,
+    checked,
+    value,
+    variant = "outlined",
+    onChange,
+    ...other
+  } = props;
   const classes = useStyles();
 
   return (
@@ -23,12 +31,11 @@ const Switch = props => {
         control={
           <MaterialSwitch
             data-testid="switch"
-            color="primary"
             name={name}
             checked={checked}
             onChange={onChange}
             value={value}
-            {...props}
+            {...other}
           />
         }
         label={label}

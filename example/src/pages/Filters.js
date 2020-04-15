@@ -9,13 +9,14 @@ import {
   TextField,
   TextArea
 } from "lre-react";
+import { Divider } from "@material-ui/core";
 
 // create page styles
 const useStyles = makeStyles(theme => ({
   root: {
     padding: theme.spacing(5)
   },
-  filters: {
+  row: {
     display: "flex"
   },
   item: {
@@ -23,6 +24,9 @@ const useStyles = makeStyles(theme => ({
   },
   table: {
     flexGrow: 1
+  },
+  divider: {
+    margin: theme.spacing(2, 0, 3, 0)
   }
 }));
 
@@ -58,32 +62,97 @@ const Filters = props => {
 
   return (
     <div className={classes.root}>
-      <div className={classes.filters}>
+      <Typography variant="h6" gutterBottom>
+        Date Pickers
+      </Typography>
+      <div className={classes.row}>
         <div className={classes.item}>
-          <Typography variant="h6" gutterBottom>
-            Date Picker
+          <Typography variant="body1" gutterBottom>
+            Standard
           </Typography>
           <DatePicker
             name="date"
             label="Date"
-            variant="outlined"
-            outlineColor="primary"
             value={filterValues.date}
             onChange={handleChange}
           />
         </div>
         <div className={classes.item}>
-          <Typography variant="h6" gutterBottom>
-            Switch
+          <Typography variant="body1" gutterBottom>
+            Outlined
+          </Typography>
+          <DatePicker
+            name="date"
+            label="Date"
+            variant="outlined"
+            value={filterValues.date}
+            onChange={handleChange}
+          />
+        </div>
+        <div className={classes.item}>
+          <Typography variant="body1" gutterBottom>
+            Filled
+          </Typography>
+          <DatePicker
+            name="date"
+            label="Date"
+            variant="filled"
+            value={filterValues.date}
+            onChange={handleChange}
+          />
+        </div>
+      </div>
+      <Divider className={classes.divider} />
+      <Typography variant="h6" gutterBottom>
+        Switch
+      </Typography>
+      <div className={classes.row}>
+        <div className={classes.item}>
+          <Typography variant="body1" gutterBottom>
+            Switch - Primary
           </Typography>
           <Switch
             name="switch"
-            label="Switch"
+            label="Enabled"
             value="switch"
+            color="primary"
             checked={filterValues.switch}
             onChange={handleChange}
           />
         </div>
+        <div className={classes.item}>
+          <Typography variant="body1" gutterBottom>
+            Switch - Secondary
+          </Typography>
+          <Switch
+            name="switch"
+            label="Enabled"
+            value="switch"
+            color="secondary"
+            checked={filterValues.switch}
+            onChange={handleChange}
+          />
+        </div>
+        <div className={classes.item}>
+          <Typography variant="body1" gutterBottom>
+            Switch - Small
+          </Typography>
+          <Switch
+            name="switch"
+            label="Enabled"
+            value="switch"
+            color="primary"
+            size="small"
+            checked={filterValues.switch}
+            onChange={handleChange}
+          />
+        </div>
+      </div>
+      <Divider className={classes.divider} />
+      <Typography variant="h6" gutterBottom>
+        Selects
+      </Typography>
+      <div className={classes.row}>
         <div className={classes.item}>
           <Typography variant="h6" gutterBottom>
             Single Select
@@ -114,6 +183,8 @@ const Filters = props => {
             onChange={handleChange}
           />
         </div>
+      </div>
+      <div className={classes.row}>
         <div className={classes.item}>
           <Typography variant="h6" gutterBottom>
             TextField
