@@ -67,6 +67,7 @@ const Filters = props => {
             name="date"
             label="Date"
             variant="outlined"
+            outlineColor="primary"
             value={filterValues.date}
             onChange={handleChange}
           />

@@ -2,59 +2,84 @@ import React from "react";
 import PropTypes from "prop-types";
 import { makeStyles } from "@material-ui/core/styles";
 import { TextField } from "@material-ui/core";
+import { setInputColor } from "../utils";
 
 const useStyles = makeStyles(theme => ({
   textField: {
     margin: theme.spacing(1)
   },
-  outlined: {
-    border: `1.5px solid ${theme.palette.primary.main}`,
-    fontSize: 14
+  outlinedTextField: {
+    margin: theme.spacing(1),
+    "& input + fieldset": {
+      borderColor: props => setInputColor(props.outlineColor, theme),
+      borderWidth: 1.5
+    },
+    "& label": {
+      color: props => setInputColor(props.labelColor, theme)
+    }
   },
-  outlinedLabel: {
-    color: theme.palette.primary.main,
-    backgroundColor: "#ffffff",
-    padding: theme.spacing(0, 0.75)
-  },
-  filled: {
-    fontSize: 14
-  },
-  filledLabel: {
-    color: theme.palette.primary.main
+  filledTextField: {
+    margin: theme.spacing(1),
+    "& div": {
+      backgroundColor: props => setInputColor(props.fillColor, theme, 0.85)
+    },
+    "& div:hover": {
+      backgroundColor: props => setInputColor(props.fillColor, theme, 0.75)
+    },
+    "& div:focus": {
+      backgroundColor: props => setInputColor(props.fillColor, theme, 0.75)
+    },
+    "& input:hover": {
+      backgroundColor: props => setInputColor(props.fillColor, theme, 0.75),
+      borderTopLeftRadius: 4,
+      borderTopRightRadius: 4
+    },
+    "& input:focus": {
+      backgroundColor: props => setInputColor(props.fillColor, theme, 0.75),
+      borderTopLeftRadius: 4,
+      borderTopRightRadius: 4
+    },
+    "& label": {
+      color: props => setInputColor(props.labelColor, theme)
+    }
   }
 }));
 
-const DatePicker = props => {
-  const {
-    name,
-    label,
-    value,
-    onChange,
-    variant = "standard",
-    fullWidth = false
-  } = props;
-  const classes = useStyles();
+const DatePicker = ({
+  name,
+  label,
+  value,
+  onChange,
+  variant = "standard",
+  outlineColor = "default",
+  fillColor = "default",
+  labelColor = "default",
+  ...other
+}) => {
+  const classes = useStyles({ outlineColor, fillColor, labelColor });
+
+  const setClass = variant => {
+    if (variant === "standard") {
+      return classes.textField;
+    } else if (variant === "outlined") {
+      return classes.outlinedTextField;
+    } else if (variant === "filled") {
+      return classes.filledTextField;
+    }
+  };
 
   return (
     <TextField
       data-testid="date-filter"
-      id={name}
-      variant={variant}
-      label={label}
       type="date"
-      fullWidth={fullWidth}
+      variant={variant}
+      id={name}
       name={name}
+      label={label}
       value={value}
-      className={classes.textField}
       onChange={onChange}
-      InputProps={{
-        color: "primary",
-        classes: { root: classes[variant] }
-      }}
-      InputLabelProps={{
-        shrink: true,
-        classes: { root: classes[`${variant}Label`] }
-      }}
+      className={setClass(variant)}
+      {...other}
     />
   );
 };
@@ -63,9 +88,11 @@ DatePicker.propTypes = {
   name: PropTypes.string.isRequired,
   label: PropTypes.string.isRequired,
   value: PropTypes.string.isRequired,
+  onChange: PropTypes.func.isRequired,
   variant: PropTypes.string,
-  fullWidth: PropTypes.bool,
-  onChange: PropTypes.func.isRequired
+  outlineColor: PropTypes.string,
+  fillColor: PropTypes.string,
+  labelColor: PropTypes.string
 };
 
 export default DatePicker;
