@@ -6,7 +6,10 @@ import { setInputColor } from "../utils";
 
 const useStyles = makeStyles(theme => ({
   textField: {
-    margin: theme.spacing(1)
+    margin: theme.spacing(1),
+    "& label": {
+      color: props => setInputColor(props.labelColor, theme)
+    }
   },
   outlinedTextField: {
     margin: theme.spacing(1),
