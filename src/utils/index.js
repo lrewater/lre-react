@@ -1,3 +1,5 @@
+import { lighten } from "@material-ui/core/styles";
+
 /**
  * Utility function for returning a list of objects associated with an
  * array of values
@@ -161,4 +163,22 @@ export const validateDependentSelections = ({
  */
 export const goTo = (history, route) => {
   history.push(`/${route}`);
+};
+
+/**
+ * Utility function used to set the appropriate color
+ * for a Material UI form input
+ * @param {Enumerator} color enum "primary", "secondary", "info", "error"
+ * @param {object} theme Material UI theme
+ * @param {number} lightenFactor factor to lighten color by
+ */
+export const setInputColor = (color, theme, lightenFactor) => {
+  const validColorOptions = ["primary", "secondary", "info", "error"];
+  if (validColorOptions.includes(color)) {
+    if (lightenFactor) {
+      return lighten(theme.palette[color].main, lightenFactor);
+    }
+    return theme.palette[color].main;
+  }
+  return null;
 };

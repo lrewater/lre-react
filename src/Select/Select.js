@@ -10,28 +10,52 @@ import {
   FilledInput,
   Input
 } from "@material-ui/core";
+import { setInputColor } from "../utils";
 
 const useStyles = makeStyles(theme => ({
   formControl: {
     margin: theme.spacing(1),
     minWidth: 150,
-    maxWidth: 400
+    "& label": {
+      color: props => setInputColor(props.labelColor, theme)
+    }
   },
-  outlined: {
-    border: `1.5px solid ${theme.palette.primary.main}`,
-    fontSize: 14,
-    padding: theme.spacing(2)
+  outlinedFormControl: {
+    margin: theme.spacing(1),
+    minWidth: 150,
+    "& fieldset": {
+      borderColor: props => setInputColor(props.outlineColor, theme),
+      borderWidth: 1.5
+    },
+    "& label": {
+      color: props => setInputColor(props.labelColor, theme)
+    }
   },
-  outlinedLabel: {
-    color: theme.palette.primary.main,
-    backgroundColor: "#ffffff",
-    padding: theme.spacing(0, 0.75)
-  },
-  filled: {
-    fontSize: 14
-  },
-  filledLabel: {
-    color: theme.palette.primary.main
+  filledFormControl: {
+    margin: theme.spacing(1),
+    minWidth: 150,
+    "& div": {
+      backgroundColor: props => setInputColor(props.fillColor, theme, 0.85)
+    },
+    "& div:hover": {
+      backgroundColor: props => setInputColor(props.fillColor, theme, 0.75)
+    },
+    "& div:focus": {
+      backgroundColor: props => setInputColor(props.fillColor, theme, 0.75)
+    },
+    "& input:hover": {
+      backgroundColor: props => setInputColor(props.fillColor, theme, 0.75),
+      borderTopLeftRadius: 4,
+      borderTopRightRadius: 4
+    },
+    "& input:focus": {
+      backgroundColor: props => setInputColor(props.fillColor, theme, 0.75),
+      borderTopLeftRadius: 4,
+      borderTopRightRadius: 4
+    },
+    "& label": {
+      color: props => setInputColor(props.labelColor, theme)
+    }
   }
 }));
 
@@ -45,77 +69,45 @@ const SingleSelectFilter = props => {
     value = "",
     variant = "standard",
     onChange,
-    width
+    width,
+    outlineColor,
+    fillColor,
+    labelColor,
+    ...other
   } = props;
-  const classes = useStyles();
+  const classes = useStyles({ outlineColor, fillColor, labelColor });
 
   /**
-   * Utility to assign the correct label class based
-   * on the variant
-   * @param {string} variant i.e. standard, filled, outlined
+   * Utility function used to assign the proper
+   * class based on the variant
+   * @param {string} variant i.e. standard, outlined, filled
    */
-  const setVariantLabelClass = variant => {
-    if (variant === "outlined") {
-      return { outlined: classes.outlinedLabel };
+  const setClass = variant => {
+    if (variant === "standard") {
+      return classes.formControl;
+    } else if (variant === "outlined") {
+      return classes.outlinedFormControl;
     } else if (variant === "filled") {
-      return { filled: classes.filledLabel };
-    } else {
-      return {};
-    }
-  };
-
-  /**
-   * Utility to assign the correct class based
-   * on the variant
-   * @param {string} variant i.e. standard, filled, outlined
-   */
-  const setVariantClass = variant => {
-    if (variant === "outlined") {
-      return { outlined: classes.outlined };
-    } else if (variant === "filled") {
-      return { filled: classes.filled };
-    } else {
-      return {};
-    }
-  };
-
-  /**
-   * Utility to return the correct component based
-   * on the variant
-   * @param {string} variant i.e. standard, filled, outlined
-   */
-  const setVariantComponent = variant => {
-    if (variant === "outlined") {
-      return <OutlinedInput data-testid="single-select" />;
-    } else if (variant === "filled") {
-      return <FilledInput data-testid="single-select" />;
-    } else {
-      return <Input data-testid="single-select" />;
+      return classes.filledFormControl;
     }
   };
 
   return (
     <FormControl
-      className={classes.formControl}
+      className={setClass(variant)}
       variant={variant}
       style={{ width: width || "auto" }}
+      {...other}
     >
-      <InputLabel
-        id={name}
-        variant={variant}
-        classes={setVariantLabelClass(variant)}
-      >
-        {label}
-      </InputLabel>
+      <InputLabel id={name}>{label}</InputLabel>
       <Select
+        data-testid="single-select"
         labelId={`${name}-label`}
         id={name}
         name={name}
+        label={label}
         value={value}
         onChange={onChange}
-        input={setVariantComponent(variant)}
-        classes={setVariantClass(variant)}
-        variant={variant}
       >
         {data.map(val => (
           <MenuItem key={val[valueField]} value={val[valueField]}>
@@ -135,7 +127,11 @@ SingleSelectFilter.propTypes = {
   data: PropTypes.array.isRequired,
   variant: PropTypes.string,
   value: PropTypes.any.isRequired,
-  onChange: PropTypes.func.isRequired
+  onChange: PropTypes.func.isRequired,
+  width: PropTypes.number,
+  outlineColor: PropTypes.string,
+  fillColor: PropTypes.string,
+  labelColor: PropTypes.string
 };
 
 export default SingleSelectFilter;

@@ -2,68 +2,80 @@ import React from "react";
 import PropTypes from "prop-types";
 import { makeStyles } from "@material-ui/core/styles";
 import { TextField as MaterialTextField } from "@material-ui/core";
+import { setInputColor } from "../utils";
 
 const useStyles = makeStyles(theme => ({
   textField: {
-    margin: theme.spacing(1)
+    margin: theme.spacing(1),
+    "& label": {
+      color: props => setInputColor(props.labelColor, theme)
+    }
   },
-  outlined: {
-    border: `1.5px solid ${theme.palette.primary.main}!important`,
-    fontSize: 14
+  outlinedTextField: {
+    margin: theme.spacing(1),
+    "& input + fieldset": {
+      borderColor: props => setInputColor(props.outlineColor, theme),
+      borderWidth: 1.5
+    },
+    "& label": {
+      color: props => setInputColor(props.labelColor, theme)
+    }
   },
-  outlinedLabel: {
-    color: theme.palette.primary.main,
-    backgroundColor: "#ffffff",
-    padding: theme.spacing(0, 0.75)
-  },
-  filled: {
-    fontSize: 14
-  },
-  filledLabel: {
-    color: theme.palette.primary.main
+  filledTextField: {
+    margin: theme.spacing(1),
+    "& div": {
+      backgroundColor: props => setInputColor(props.fillColor, theme, 0.85)
+    },
+    "& div:hover": {
+      backgroundColor: props => setInputColor(props.fillColor, theme, 0.75)
+    },
+    "& div:focus": {
+      backgroundColor: props => setInputColor(props.fillColor, theme, 0.75)
+    },
+    "& input:hover": {
+      backgroundColor: props => setInputColor(props.fillColor, theme, 0.75),
+      borderTopLeftRadius: 4,
+      borderTopRightRadius: 4
+    },
+    "& input:focus": {
+      backgroundColor: props => setInputColor(props.fillColor, theme, 0.75),
+      borderTopLeftRadius: 4,
+      borderTopRightRadius: 4
+    },
+    "& label": {
+      color: props => setInputColor(props.labelColor, theme)
+    }
   }
 }));
 
 const TextArea = props => {
-  const classes = useStyles();
   const {
     name,
     label,
-    type = "text",
     value,
     variant,
-    fullWidth = false,
     rows = 4,
-    onChange
+    onChange,
+    width,
+    outlineColor,
+    fillColor,
+    labelColor,
+    ...other
   } = props;
+  const classes = useStyles({ outlineColor, fillColor, labelColor });
 
   /**
-   * Utility function used to set proper
-   * styling based on variant
-   * @param {*} variant i.e. standard, outlined, filled
+   * Utility function used to assign the proper
+   * class based on the variant
+   * @param {string} variant i.e. standard, outlined, filled
    */
-  const setVariantLabelClass = variant => {
-    if (variant === "outlined") {
-      return { outlined: classes.outlinedLabel };
+  const setClass = variant => {
+    if (variant === "standard") {
+      return classes.textField;
+    } else if (variant === "outlined") {
+      return classes.outlinedTextField;
     } else if (variant === "filled") {
-      return { filled: classes.filledLabel };
-    } else {
-      return {};
-    }
-  };
-
-  /**
-   * Utility function used to set proper
-   * styling based on variant
-   * @param {*} variant i.e. standard, outlined, filled
-   */
-  const setVariantClass = variant => {
-    if (variant === "outlined") {
-      return { root: classes.outlined };
-    } else if (variant === "filled") {
-      return { root: classes.filled };
-    } else {
-      return {};
+      return classes.filledTextField;
     }
   };
 
@@ -71,25 +83,16 @@ const TextArea = props => {
     <MaterialTextField
       data-testid="text-area"
       id={name}
-      multiline
-      rows={rows}
-      variant={variant}
-      label={label}
-      fullWidth={fullWidth}
-      type={type}
       name={name}
+      multiline
+      variant={variant}
+      rows={rows}
+      label={label}
       value={value}
-      className={classes.textField}
       onChange={onChange}
-      placeholder={label}
-      InputProps={{
-        color: "primary",
-        classes: setVariantClass(variant)
-      }}
-      InputLabelProps={{
-        shrink: true,
-        classes: setVariantLabelClass(variant)
-      }}
+      className={setClass(variant)}
+      style={{ width: width || "auto" }}
+      {...other}
     />
   );
 };
@@ -100,8 +103,12 @@ TextArea.propTypes = {
   value: PropTypes.string.isRequired,
   variant: PropTypes.string,
   fullWidth: PropTypes.bool,
-  rows: PropTypes.number,
-  onChange: PropTypes.func.isRequired
+  rows: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+  onChange: PropTypes.func.isRequired,
+  width: PropTypes.number,
+  outlineColor: PropTypes.string,
+  fillColor: PropTypes.string,
+  labelColor: PropTypes.string
 };
 
 export default TextArea;
