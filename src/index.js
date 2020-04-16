@@ -4,5 +4,8 @@ export { default as TextField } from "./TextField";
 export { default as TextArea } from "./TextArea";
 export { default as Select } from "./Select";
 export { default as MultiSelect } from "./MultiSelect";
+export { default as FilterAdvanced } from "./FilterAdvanced";
+export { default as FilterActions } from "./FilterActions";
+export { default as FilterBar } from "./FilterBar";
 export { default as Table } from "./Table";
 export { default as EditableTable } from "./EditableTable";

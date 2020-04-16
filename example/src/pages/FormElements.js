@@ -30,7 +30,7 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-const Filters = props => {
+const FormElements = props => {
   const classes = useStyles();
   const [filterValues, setFilterValues] = useState({
     date: "2020-02-25",
@@ -348,4 +348,4 @@ const Filters = props => {
   );
 };
 
-export default Filters;
+export default FormElements;
