@@ -54,6 +54,7 @@ const DatePicker = ({
   outlineColor = "default",
   fillColor = "default",
   labelColor = "default",
+  width,
   ...other
 }) => {
   const classes = useStyles({ outlineColor, fillColor, labelColor });
@@ -79,6 +80,7 @@ const DatePicker = ({
       value={value}
       onChange={onChange}
       className={setClass(variant)}
+      style={{ width: width || "auto" }}
       {...other}
     />
   );
@@ -90,6 +92,7 @@ DatePicker.propTypes = {
   value: PropTypes.string.isRequired,
   onChange: PropTypes.func.isRequired,
   variant: PropTypes.string,
+  width: PropTypes.number,
   outlineColor: PropTypes.string,
   fillColor: PropTypes.string,
   labelColor: PropTypes.string
