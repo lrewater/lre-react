@@ -7,7 +7,8 @@ import Loading from "./components/Loading";
 import theme from "./theme";
 
 const Home = React.lazy(() => import("./pages/Home"));
-const Filters = React.lazy(() => import("./pages/Filters"));
+const FormElements = React.lazy(() => import("./pages/FormElements"));
+const ReportsViews = React.lazy(() => import("./pages/ReportsViews"));
 const Tables = React.lazy(() => import("./pages/Tables"));
 
 const App = () => {
@@ -18,7 +19,8 @@ const App = () => {
         <Suspense fallback={<Loading />}>
           <Switch>
             <Route path="/" exact component={Home} />
-            <Route path="/filters" exact component={Filters} />
+            <Route path="/form-elements" exact component={FormElements} />
+            <Route path="/reports-views" exact component={ReportsViews} />
             <Route path="/tables" exact component={Tables} />
 
             <Route path="*">

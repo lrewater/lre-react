@@ -45,7 +45,30 @@ const Home = props => {
                     <Typography variant="body1" paragraph>
                       Try out various form elements
                     </Typography>
-                    <Button color="primary" component={Link} to="/filters">
+                    <Button
+                      color="primary"
+                      component={Link}
+                      to="/form-elements"
+                    >
+                      View Page
+                    </Button>
+                  </CardContent>
+                </Card>
+              </Grid>
+              <Grid item sm={4}>
+                <Card>
+                  <CardContent>
+                    <Typography variant="h6" color="primary">
+                      Reports and Views
+                    </Typography>
+                    <Typography variant="body1" paragraph>
+                      Try out various report and view elements
+                    </Typography>
+                    <Button
+                      color="primary"
+                      component={Link}
+                      to="/reports-views"
+                    >
                       View Page
                     </Button>
                   </CardContent>
