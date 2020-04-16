@@ -118,7 +118,11 @@ SingleSelectFilter.propTypes = {
   data: PropTypes.array.isRequired,
   variant: PropTypes.string,
   value: PropTypes.any.isRequired,
-  onChange: PropTypes.func.isRequired
+  onChange: PropTypes.func.isRequired,
+  width: PropTypes.number,
+  outlineColor: PropTypes.string,
+  fillColor: PropTypes.string,
+  labelColor: PropTypes.string
 };
 
 export default SingleSelectFilter;
