@@ -8,34 +8,55 @@ import {
   MenuItem,
   Checkbox,
   ListItemText,
-  OutlinedInput,
-  FilledInput,
-  Input,
   Button,
   Divider
 } from "@material-ui/core";
+import { setInputColor } from "../utils";
 
 const useStyles = makeStyles(theme => ({
   formControl: {
     margin: theme.spacing(1),
-    minWidth: 215,
-    maxWidth: 230
+    minWidth: 150,
+    "& label": {
+      color: props => setInputColor(props.labelColor, theme)
+    }
   },
-  outlined: {
-    border: `1.5px solid ${theme.palette.primary.main}`,
-    fontSize: 14,
-    padding: theme.spacing(2)
+  outlinedFormControl: {
+    margin: theme.spacing(1),
+    minWidth: 150,
+    "& fieldset": {
+      borderColor: props => setInputColor(props.outlineColor, theme),
+      borderWidth: 1.5
+    },
+    "& label": {
+      color: props => setInputColor(props.labelColor, theme)
+    }
   },
-  outlinedLabel: {
-    color: theme.palette.primary.main,
-    backgroundColor: "#ffffff",
-    padding: theme.spacing(0, 0.75)
-  },
-  filled: {
-    fontSize: 14
-  },
-  filledLabel: {
-    color: theme.palette.primary.main
+  filledFormControl: {
+    margin: theme.spacing(1),
+    minWidth: 150,
+    "& div": {
+      backgroundColor: props => setInputColor(props.fillColor, theme, 0.85)
+    },
+    "& div:hover": {
+      backgroundColor: props => setInputColor(props.fillColor, theme, 0.75)
+    },
+    "& div:focus": {
+      backgroundColor: props => setInputColor(props.fillColor, theme, 0.75)
+    },
+    "& input:hover": {
+      backgroundColor: props => setInputColor(props.fillColor, theme, 0.75),
+      borderTopLeftRadius: 4,
+      borderTopRightRadius: 4
+    },
+    "& input:focus": {
+      backgroundColor: props => setInputColor(props.fillColor, theme, 0.75),
+      borderTopLeftRadius: 4,
+      borderTopRightRadius: 4
+    },
+    "& label": {
+      color: props => setInputColor(props.labelColor, theme)
+    }
   },
   controls: {
     position: "absolute",
@@ -63,52 +84,27 @@ const MultiSelect = props => {
     data = [],
     value = "",
     variant = "standard",
-    onChange
+    onChange,
+    width,
+    outlineColor,
+    fillColor,
+    labelColor,
+    ...other
   } = props;
-  const classes = useStyles();
+  const classes = useStyles({ outlineColor, fillColor, labelColor });
 
   /**
-   * Utility to assign the correct label class based
-   * on the variant
-   * @param {string} variant i.e. standard, filled, outlined
+   * Utility function used to assign the proper
+   * class based on the variant
+   * @param {string} variant i.e. standard, outlined, filled
    */
-  const setVariantLabelClass = variant => {
-    if (variant === "outlined") {
-      return { outlined: classes.outlinedLabel };
+  const setClass = variant => {
+    if (variant === "standard") {
+      return classes.formControl;
+    } else if (variant === "outlined") {
+      return classes.outlinedFormControl;
     } else if (variant === "filled") {
-      return { filled: classes.filledLabel };
-    } else {
-      return {};
-    }
-  };
-
-  /**
-   * Utility to assign the correct class based
-   * on the variant
-   * @param {string} variant i.e. standard, filled, outlined
-   */
-  const setVariantClass = variant => {
-    if (variant === "outlined") {
-      return { outlined: classes.outlined };
-    } else if (variant === "filled") {
-      return { filled: classes.filled };
-    } else {
-      return {};
-    }
-  };
-
-  /**
-   * Utility to return the correct component based
-   * on the variant
-   * @param {string} variant i.e. standard, filled, outlined
-   */
-  const setVariantComponent = variant => {
-    if (variant === "outlined") {
-      return <OutlinedInput data-testid="multi-select" />;
-    } else if (variant === "filled") {
-      return <FilledInput data-testid="multi-select" />;
-    } else {
-      return <Input data-testid="multi-select" />;
+      return classes.filledFormControl;
     }
   };
 
@@ -160,24 +156,22 @@ const MultiSelect = props => {
   };
 
   return (
-    <FormControl className={classes.formControl} variant="outlined">
-      <InputLabel
-        id={name}
-        variant={variant}
-        classes={setVariantLabelClass(variant)}
-      >
-        {label}
-      </InputLabel>
+    <FormControl
+      className={setClass(variant)}
+      variant={variant}
+      style={{ width: width || "auto" }}
+      {...other}
+    >
+      <InputLabel id={name}>{label}</InputLabel>
       <Select
+        data-testid="multi-select"
         labelId={`${name}-label`}
         id={name}
         name={name}
+        label={label}
         multiple
         value={value}
         onChange={handleChange}
-        input={setVariantComponent(variant)}
-        classes={setVariantClass(variant)}
-        variant={variant}
         renderValue={selections => setSelectedText(selections)}
         MenuProps={MenuProps}
       >
@@ -210,7 +204,11 @@ MultiSelect.propTypes = {
   data: PropTypes.array.isRequired,
   value: PropTypes.array.isRequired,
   variant: PropTypes.string,
-  onChange: PropTypes.func.isRequired
+  onChange: PropTypes.func.isRequired,
+  width: PropTypes.number,
+  outlineColor: PropTypes.string,
+  fillColor: PropTypes.string,
+  labelColor: PropTypes.string
 };
 
 export default MultiSelect;
