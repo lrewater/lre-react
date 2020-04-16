@@ -254,14 +254,30 @@ const Filters = props => {
           />
         </div>
       </div>
+      <Divider className={classes.divider} />
+
+      <Typography variant="h6" gutterBottom>
+        TextFields
+      </Typography>
       <div className={classes.row}>
         <div className={classes.item}>
           <Typography variant="h6" gutterBottom>
-            TextField
+            Standard TextField
           </Typography>
           <TextField
             name="text_field"
-            label="Text Field"
+            label="Standard Text Field"
+            value={filterValues.text_field}
+            onChange={handleChange}
+          />
+        </div>
+        <div className={classes.item}>
+          <Typography variant="h6" gutterBottom>
+            Outlined TextField
+          </Typography>
+          <TextField
+            name="text_field"
+            label="Outlined Text Field"
             value={filterValues.text_field}
             variant="outlined"
             onChange={handleChange}
@@ -269,14 +285,61 @@ const Filters = props => {
         </div>
         <div className={classes.item}>
           <Typography variant="h6" gutterBottom>
-            TextArea
+            Filled TextField
+          </Typography>
+          <TextField
+            name="text_field"
+            label="Filled Text Field"
+            value={filterValues.text_field}
+            variant="filled"
+            onChange={handleChange}
+          />
+        </div>
+      </div>
+      <Divider className={classes.divider} />
+
+      <Typography variant="h6" gutterBottom>
+        TextAreas
+      </Typography>
+      <div className={classes.row}>
+        <div className={classes.item}>
+          <Typography variant="h6" gutterBottom>
+            Standard TextArea
           </Typography>
           <TextArea
             name="text_area"
             label="Text Area"
             value={filterValues.text_area}
             rows="8"
+            width={300}
+            onChange={handleChange}
+          />
+        </div>
+        <div className={classes.item}>
+          <Typography variant="h6" gutterBottom>
+            Outlined TextArea
+          </Typography>
+          <TextArea
+            name="text_area"
+            label="Text Area"
+            value={filterValues.text_area}
+            rows="8"
+            width={300}
             variant="outlined"
+            onChange={handleChange}
+          />
+        </div>
+        <div className={classes.item}>
+          <Typography variant="h6" gutterBottom>
+            Outlined TextArea
+          </Typography>
+          <TextArea
+            name="text_area"
+            label="Text Area"
+            value={filterValues.text_area}
+            rows="8"
+            width={300}
+            variant="filled"
             onChange={handleChange}
           />
         </div>
