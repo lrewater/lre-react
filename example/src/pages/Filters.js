@@ -103,6 +103,7 @@ const Filters = props => {
         </div>
       </div>
       <Divider className={classes.divider} />
+
       <Typography variant="h6" gutterBottom>
         Switch
       </Typography>
@@ -149,6 +150,7 @@ const Filters = props => {
         </div>
       </div>
       <Divider className={classes.divider} />
+
       <Typography variant="h6" gutterBottom>
         Selects
       </Typography>
@@ -205,16 +207,49 @@ const Filters = props => {
       <div className={classes.row}>
         <div className={classes.item}>
           <Typography variant="body1" gutterBottom>
-            Multi Select
+            Standard Multi-Select
           </Typography>
           <MultiSelect
             name="multi_select"
-            label="Multi Select"
+            label="Standard Multi Select"
+            variant="standard"
+            valueField="ndx"
+            displayField="display"
+            data={data}
+            value={filterValues.multi_select}
+            width={200}
+            onChange={handleChange}
+          />
+        </div>
+        <div className={classes.item}>
+          <Typography variant="body1" gutterBottom>
+            Outlined Multi-Select
+          </Typography>
+          <MultiSelect
+            name="multi_select"
+            label="Outlined Multi Select"
             variant="outlined"
             valueField="ndx"
             displayField="display"
             data={data}
             value={filterValues.multi_select}
+            width={200}
+            onChange={handleChange}
+          />
+        </div>
+        <div className={classes.item}>
+          <Typography variant="body1" gutterBottom>
+            Filled Multi-Select
+          </Typography>
+          <MultiSelect
+            name="multi_select"
+            label="Filled Multi Select"
+            variant="filled"
+            valueField="ndx"
+            displayField="display"
+            data={data}
+            value={filterValues.multi_select}
+            width={200}
             onChange={handleChange}
           />
         </div>

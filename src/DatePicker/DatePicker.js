@@ -59,6 +59,11 @@ const DatePicker = ({
 }) => {
   const classes = useStyles({ outlineColor, fillColor, labelColor });
 
+  /**
+   * Utility function used to assign the proper
+   * class based on the variant
+   * @param {string} variant i.e. standard, outlined, filled
+   */
   const setClass = variant => {
     if (variant === "standard") {
       return classes.textField;

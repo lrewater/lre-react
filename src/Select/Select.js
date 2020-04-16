@@ -16,10 +16,13 @@ const useStyles = makeStyles(theme => ({
   formControl: {
     margin: theme.spacing(1),
     minWidth: 150,
-    maxWidth: 400
+    "& label": {
+      color: props => setInputColor(props.labelColor, theme)
+    }
   },
   outlinedFormControl: {
     margin: theme.spacing(1),
+    minWidth: 150,
     "& fieldset": {
       borderColor: props => setInputColor(props.outlineColor, theme),
       borderWidth: 1.5
@@ -30,6 +33,7 @@ const useStyles = makeStyles(theme => ({
   },
   filledFormControl: {
     margin: theme.spacing(1),
+    minWidth: 150,
     "& div": {
       backgroundColor: props => setInputColor(props.fillColor, theme, 0.85)
     },
@@ -73,6 +77,11 @@ const SingleSelectFilter = props => {
   } = props;
   const classes = useStyles({ outlineColor, fillColor, labelColor });
 
+  /**
+   * Utility function used to assign the proper
+   * class based on the variant
+   * @param {string} variant i.e. standard, outlined, filled
+   */
   const setClass = variant => {
     if (variant === "standard") {
       return classes.formControl;
