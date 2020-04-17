@@ -15,7 +15,12 @@ const useStyles = makeStyles(theme => ({
     margin: theme.spacing(3)
   },
   table: {
-    flexGrow: 1
+    flexGrow: 1,
+    backgroundColor: "#ffffff",
+    padding: theme.spacing(2),
+    margin: theme.spacing(2),
+    borderRadius: 4,
+    boxShadow: theme.shadows[1]
   }
 }));
 
@@ -48,7 +53,11 @@ const Tables = props => {
   ];
 
   const tableData = [
-    { ndx: 1, first_name: "Ben", last_name: "Tyler" },
+    {
+      ndx: 1,
+      first_name: "Ben",
+      last_name: "Tyler"
+    },
     { ndx: 2, first_name: "Ben", last_name: "Tyler" }
   ];
 
@@ -69,7 +78,8 @@ const Tables = props => {
       label: "First Name",
       accessor: "first_name",
       filter: {
-        enabled: false
+        enabled: true,
+        type: "date"
       },
       columnToggle: {
         enabled: true
