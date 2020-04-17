@@ -99,7 +99,6 @@ TextField.propTypes = {
   label: PropTypes.string.isRequired,
   value: PropTypes.string.isRequired,
   variant: PropTypes.string,
-  fullWidth: PropTypes.bool,
   onChange: PropTypes.func.isRequired,
   width: PropTypes.number,
   outlineColor: PropTypes.string,

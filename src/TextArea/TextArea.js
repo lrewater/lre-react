@@ -13,7 +13,7 @@ const useStyles = makeStyles(theme => ({
   },
   outlinedTextField: {
     margin: theme.spacing(1),
-    "& input + fieldset": {
+    "& textarea + fieldset": {
       borderColor: props => setInputColor(props.outlineColor, theme),
       borderWidth: 1.5
     },
@@ -102,7 +102,6 @@ TextArea.propTypes = {
   label: PropTypes.string.isRequired,
   value: PropTypes.string.isRequired,
   variant: PropTypes.string,
-  fullWidth: PropTypes.bool,
   rows: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
   onChange: PropTypes.func.isRequired,
   width: PropTypes.number,
