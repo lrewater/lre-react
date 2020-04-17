@@ -260,6 +260,7 @@ const Table = ({ data, columns, title, height, loading, ...props }) => {
                 value="exclude_nulls"
                 checked={excludeNulls}
                 onChange={handleExcludeNulls}
+                color="primary"
               />
               <div onClick={handleDataDownloadVisibility}>
                 <Tooltip title="Download Data">

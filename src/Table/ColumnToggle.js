@@ -46,7 +46,9 @@ const ColumnToggles = ({
             displayField="label"
             data={columns}
             value={selections}
+            variant="outlined"
             onChange={handleFilter}
+            width={250}
           />
         </div>
       </div>
