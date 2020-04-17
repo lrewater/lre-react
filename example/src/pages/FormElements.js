@@ -326,6 +326,8 @@ const FormElements = props => {
             rows="8"
             width={300}
             variant="outlined"
+            outlineColor="primary"
+            labelColor="primary"
             onChange={handleChange}
           />
         </div>
@@ -340,6 +342,8 @@ const FormElements = props => {
             rows="8"
             width={300}
             variant="filled"
+            fillColor="primary"
+            labelColor="primary"
             onChange={handleChange}
           />
         </div>
