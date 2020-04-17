@@ -91,7 +91,7 @@ const TextArea = props => {
       value={value}
       onChange={onChange}
       className={setClass(variant)}
-      style={{ width: width || "auto" }}
+      style={{ width: width || "inherit" }}
       {...other}
     />
   );
