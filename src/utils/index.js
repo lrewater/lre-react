@@ -182,3 +182,34 @@ export const setInputColor = (color, theme, lightenFactor) => {
   }
   return null;
 };
+
+/**
+ * Utility function used to assign the proper
+ * class based on the variant
+ * @param {string} variant i.e. standard, outlined, filled
+ */
+export const setClass = (classes, variant, classSuffix = "TextField") => {
+  if (variant === "outlined") {
+    return classes[`outlined${classSuffix}`];
+  } else if (variant === "filled") {
+    return classes[`filled${classSuffix}`];
+  } else {
+    return classes[classSuffix];
+  }
+};
+
+/**
+ * Utility function used to return the appropriate width
+ * for a form element
+ * @param {number} width
+ * @param {boolean} fullWidth
+ */
+export const setWidth = (width, fullWidth) => {
+  if (fullWidth) {
+    return "100%";
+  } else if (width) {
+    return width;
+  } else {
+    ("inherit");
+  }
+};

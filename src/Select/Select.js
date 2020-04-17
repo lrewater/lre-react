@@ -10,10 +10,10 @@ import {
   FilledInput,
   Input
 } from "@material-ui/core";
-import { setInputColor } from "../utils";
+import { setInputColor, setWidth, setClass } from "../utils";
 
 const useStyles = makeStyles(theme => ({
-  formControl: {
+  FormControl: {
     margin: theme.spacing(1),
     minWidth: 150,
     "& label": {
@@ -77,26 +77,11 @@ const SingleSelectFilter = props => {
   } = props;
   const classes = useStyles({ outlineColor, fillColor, labelColor });
 
-  /**
-   * Utility function used to assign the proper
-   * class based on the variant
-   * @param {string} variant i.e. standard, outlined, filled
-   */
-  const setClass = variant => {
-    if (variant === "standard") {
-      return classes.formControl;
-    } else if (variant === "outlined") {
-      return classes.outlinedFormControl;
-    } else if (variant === "filled") {
-      return classes.filledFormControl;
-    }
-  };
-
   return (
     <FormControl
-      className={setClass(variant)}
+      className={setClass(classes, variant, "FormControl")}
       variant={variant}
-      style={{ width: width || "inherit" }}
+      style={{ width: setWidth(width, other.fullWidth) }}
       {...other}
     >
       <InputLabel id={name}>{label}</InputLabel>

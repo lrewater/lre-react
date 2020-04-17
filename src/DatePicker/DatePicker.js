@@ -2,10 +2,10 @@ import React from "react";
 import PropTypes from "prop-types";
 import { makeStyles } from "@material-ui/core/styles";
 import { TextField } from "@material-ui/core";
-import { setInputColor } from "../utils";
+import { setInputColor, setWidth, setClass } from "../utils";
 
 const useStyles = makeStyles(theme => ({
-  textField: {
+  TextField: {
     margin: theme.spacing(1),
     "& label": {
       color: props => setInputColor(props.labelColor, theme)
@@ -62,21 +62,6 @@ const DatePicker = ({
 }) => {
   const classes = useStyles({ outlineColor, fillColor, labelColor });
 
-  /**
-   * Utility function used to assign the proper
-   * class based on the variant
-   * @param {string} variant i.e. standard, outlined, filled
-   */
-  const setClass = variant => {
-    if (variant === "standard") {
-      return classes.textField;
-    } else if (variant === "outlined") {
-      return classes.outlinedTextField;
-    } else if (variant === "filled") {
-      return classes.filledTextField;
-    }
-  };
-
   return (
     <TextField
       data-testid="date-filter"
@@ -87,8 +72,8 @@ const DatePicker = ({
       label={label}
       value={value}
       onChange={onChange}
-      className={setClass(variant)}
-      style={{ width: width || "inherit" }}
+      className={setClass(classes, variant)}
+      style={{ width: setWidth(width, other.fullWidth) }}
       {...other}
     />
   );
