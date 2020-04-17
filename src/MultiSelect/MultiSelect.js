@@ -159,7 +159,7 @@ const MultiSelect = props => {
     <FormControl
       className={setClass(variant)}
       variant={variant}
-      style={{ width: width || "auto" }}
+      style={{ width: width || "inherit" }}
       {...other}
     >
       <InputLabel id={name}>{label}</InputLabel>
