@@ -20,11 +20,11 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-const FilterBar = ({ onSubmit, children }) => {
+const FilterBar = ({ onSubmit, children, ...other }) => {
   const classes = useStyles();
 
   return (
-    <Box boxShadow={1} className={classes.root}>
+    <Box boxShadow={1} className={classes.root} {...other}>
       <form
         data-testid="filter-form"
         className={classes.filters}
