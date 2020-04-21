@@ -20,11 +20,11 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-const FilterBar = ({ onSubmit, children }) => {
+const FilterBar = ({ id, onSubmit, children }) => {
   const classes = useStyles();
 
   return (
-    <Box boxShadow={1} className={classes.root}>
+    <Box boxShadow={1} className={classes.root} id={id}>
       <form
         data-testid="filter-form"
         className={classes.filters}
@@ -37,6 +37,7 @@ const FilterBar = ({ onSubmit, children }) => {
 };
 
 FilterBar.propTypes = {
+  id: PropTypes.string,
   onSubmit: PropTypes.func.isRequired,
   children: PropTypes.oneOfType([
     PropTypes.arrayOf(PropTypes.node),
