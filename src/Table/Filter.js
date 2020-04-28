@@ -76,7 +76,7 @@ const Filters = ({ filters, visible, visibilityHandler, handleFilter }) => {
 
   return (
     <Collapse in={visible}>
-      <div className={classes.filters}>
+      <div className={classes.filters} id="table-filters-section">
         <Typography variant="h6" gutterBottom display="inline">
           Table Filters
         </Typography>

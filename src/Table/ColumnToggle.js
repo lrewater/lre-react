@@ -33,7 +33,7 @@ const ColumnToggles = ({
 
   return (
     <Collapse in={visible}>
-      <div className={classes.filters}>
+      <div className={classes.filters} id="column-toggle-section">
         <Typography variant="h6" display="inline" gutterBottom>
           Toggle Columns
         </Typography>

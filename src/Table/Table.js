@@ -218,7 +218,7 @@ const Table = ({ data, columns, title, height, loading, ...props }) => {
           <React.Fragment>
             <div className={classes.controlsBar}>
               {filters.filter(col => col.filter.enabled).length > 0 && (
-                <div onClick={handleFiltersVisibility}>
+                <div onClick={handleFiltersVisibility} id="table-filters">
                   <Tooltip title="Filter Records">
                     <IconButton aria-label="Filter Records">
                       <FilterListIcon
@@ -237,7 +237,7 @@ const Table = ({ data, columns, title, height, loading, ...props }) => {
               )}
               {columnToggles.filter(col => col.columnToggle.enabled).length >
                 0 && (
-                <div onClick={handleColumnTogglesVisibility}>
+                <div onClick={handleColumnTogglesVisibility} id="column-toggle">
                   <Tooltip title="Toggle Columns">
                     <IconButton aria-label="Toggle Columns">
                       <ColumnsIcon
@@ -255,6 +255,7 @@ const Table = ({ data, columns, title, height, loading, ...props }) => {
                 </div>
               )}
               <Switch
+                id="exclude-nulls"
                 name="exclude_nulls"
                 label="Exclude Nulls"
                 value="exclude_nulls"
@@ -262,7 +263,7 @@ const Table = ({ data, columns, title, height, loading, ...props }) => {
                 onChange={handleExcludeNulls}
                 color="primary"
               />
-              <div onClick={handleDataDownloadVisibility}>
+              <div onClick={handleDataDownloadVisibility} id="download-data">
                 <Tooltip title="Download Data">
                   <IconButton aria-label="Download Data">
                     <DownloadIcon />
