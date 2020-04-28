@@ -27,6 +27,7 @@ const FilterAdvanced = ({ children }) => {
         color="primary"
         className={classes.margin}
         onClick={handleVisibility}
+        id="more-filters-btn"
       >
         <TuneIcon style={{ marginRight: 5 }} />
         {visibility ? "Less Filters" : "More Filters"}
