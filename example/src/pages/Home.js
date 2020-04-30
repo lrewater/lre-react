@@ -67,7 +67,7 @@ const Home = props => {
                     <Button
                       color="primary"
                       component={Link}
-                      to="/reports-views"
+                      to="/reports-views/1"
                     >
                       View Page
                     </Button>

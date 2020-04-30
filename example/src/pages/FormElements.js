@@ -1,15 +1,20 @@
 import React, { useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
-import { Typography } from "@material-ui/core";
+import { Typography, Button } from "@material-ui/core";
 import {
   DatePicker,
   Switch,
   Select,
   MultiSelect,
   TextField,
-  TextArea
+  TextArea,
+  FilterBar,
+  FilterAdvanced,
+  FilterActions
 } from "lre-react";
 import { Divider } from "@material-ui/core";
+import Navigation from "../components/Navigation";
+import Layout from "../components/Layout";
 
 // create page styles
 const useStyles = makeStyles(theme => ({
@@ -26,7 +31,10 @@ const useStyles = makeStyles(theme => ({
     flexGrow: 1
   },
   divider: {
-    margin: theme.spacing(2, 0, 3, 0)
+    margin: `${theme.spacing(2, 0, 3, 0)}!important`
+  },
+  filterBar: {
+    marginBottom: theme.spacing(2)
   }
 }));
 
@@ -61,294 +69,362 @@ const FormElements = props => {
   ];
 
   return (
-    <div className={classes.root}>
-      <Typography variant="h6" gutterBottom>
-        Date Pickers
-      </Typography>
-      <div className={classes.row}>
-        <div className={classes.item}>
-          <Typography variant="body1" gutterBottom>
-            Standard
-          </Typography>
-          <DatePicker
-            name="date"
-            label="Date"
-            value={filterValues.date}
-            onChange={handleChange}
-          />
-        </div>
-        <div className={classes.item}>
-          <Typography variant="body1" gutterBottom>
-            Outlined
-          </Typography>
-          <DatePicker
-            name="date"
-            label="Date"
-            variant="outlined"
-            value={filterValues.date}
-            onChange={handleChange}
-          />
-        </div>
-        <div className={classes.item}>
-          <Typography variant="body1" gutterBottom>
-            Filled
-          </Typography>
-          <DatePicker
-            name="date"
-            label="Date"
-            variant="filled"
-            value={filterValues.date}
-            onChange={handleChange}
-          />
-        </div>
-      </div>
-      <Divider className={classes.divider} />
-
-      <Typography variant="h6" gutterBottom>
-        Switch
-      </Typography>
-      <div className={classes.row}>
-        <div className={classes.item}>
-          <Typography variant="body1" gutterBottom>
-            Switch - Primary
-          </Typography>
-          <Switch
-            name="switch"
-            label="Enabled"
-            value="switch"
-            color="primary"
-            checked={filterValues.switch}
-            onChange={handleChange}
-          />
-        </div>
-        <div className={classes.item}>
-          <Typography variant="body1" gutterBottom>
-            Switch - Secondary
-          </Typography>
-          <Switch
-            name="switch"
-            label="Enabled"
-            value="switch"
-            color="secondary"
-            checked={filterValues.switch}
-            onChange={handleChange}
-          />
-        </div>
-        <div className={classes.item}>
-          <Typography variant="body1" gutterBottom>
-            Switch - Small
-          </Typography>
-          <Switch
-            name="switch"
-            label="Enabled"
-            value="switch"
-            color="primary"
-            size="small"
-            checked={filterValues.switch}
-            onChange={handleChange}
-          />
-        </div>
-      </div>
-      <Divider className={classes.divider} />
-
-      <Typography variant="h6" gutterBottom>
-        Selects
-      </Typography>
-      <div className={classes.row}>
-        <div className={classes.item}>
-          <Typography variant="body1" gutterBottom>
-            Standard Select
-          </Typography>
-          <Select
-            name="single_select"
-            label="Single Select"
-            variant="standard"
-            valueField="ndx"
-            displayField="display"
-            data={data}
-            value={filterValues.single_select}
-            onChange={handleChange}
-            width={200}
-          />
-        </div>
-        <div className={classes.item}>
-          <Typography variant="body1" gutterBottom>
-            Outlined Select
-          </Typography>
-          <Select
-            name="single_select"
-            label="Single Select"
-            variant="outlined"
-            valueField="ndx"
-            displayField="display"
-            data={data}
-            value={filterValues.single_select}
-            onChange={handleChange}
-            width={200}
-          />
-        </div>
-        <div className={classes.item}>
-          <Typography variant="body1" gutterBottom>
-            Filled Select
-          </Typography>
-          <Select
-            name="single_select"
-            label="Single Select"
-            variant="filled"
-            valueField="ndx"
-            displayField="display"
-            data={data}
-            value={filterValues.single_select}
-            onChange={handleChange}
-            width={200}
-          />
-        </div>
-      </div>
-      <div className={classes.row}>
-        <div className={classes.item}>
-          <Typography variant="body1" gutterBottom>
-            Standard Multi-Select
-          </Typography>
-          <MultiSelect
-            name="multi_select"
-            label="Standard Multi Select"
-            variant="standard"
-            valueField="ndx"
-            displayField="display"
-            data={data}
-            value={filterValues.multi_select}
-            width={200}
-            onChange={handleChange}
-          />
-        </div>
-        <div className={classes.item}>
-          <Typography variant="body1" gutterBottom>
-            Outlined Multi-Select
-          </Typography>
-          <MultiSelect
-            name="multi_select"
-            label="Outlined Multi Select"
-            variant="outlined"
-            valueField="ndx"
-            displayField="display"
-            data={data}
-            value={filterValues.multi_select}
-            width={200}
-            onChange={handleChange}
-          />
-        </div>
-        <div className={classes.item}>
-          <Typography variant="body1" gutterBottom>
-            Filled Multi-Select
-          </Typography>
-          <MultiSelect
-            name="multi_select"
-            label="Filled Multi Select"
-            variant="filled"
-            valueField="ndx"
-            displayField="display"
-            data={data}
-            value={filterValues.multi_select}
-            width={200}
-            onChange={handleChange}
-          />
-        </div>
-      </div>
-      <Divider className={classes.divider} />
-
-      <Typography variant="h6" gutterBottom>
-        TextFields
-      </Typography>
-      <div className={classes.row}>
-        <div className={classes.item}>
-          <Typography variant="h6" gutterBottom>
-            Standard TextField
-          </Typography>
+    <Layout>
+      <div className={classes.root}>
+        <Typography variant="h6" gutterBottom>
+          Filter Bar
+        </Typography>
+        <FilterBar className={classes.filterBar} onSubmit={() => {}}>
           <TextField
-            name="text_field"
-            label="Standard Text Field"
-            value={filterValues.text_field}
-            onChange={handleChange}
-          />
-        </div>
-        <div className={classes.item}>
-          <Typography variant="h6" gutterBottom>
-            Outlined TextField
-          </Typography>
-          <TextField
-            name="text_field"
-            label="Outlined Text Field"
-            value={filterValues.text_field}
+            name="structure_type"
+            label="Structure Type"
+            value=""
             variant="outlined"
-            onChange={handleChange}
-          />
-        </div>
-        <div className={classes.item}>
-          <Typography variant="h6" gutterBottom>
-            Filled TextField
-          </Typography>
-          <TextField
-            name="text_field"
-            label="Filled Text Field"
-            value={filterValues.text_field}
-            variant="filled"
-            onChange={handleChange}
-          />
-        </div>
-      </div>
-      <Divider className={classes.divider} />
-
-      <Typography variant="h6" gutterBottom>
-        TextAreas
-      </Typography>
-      <div className={classes.row}>
-        <div className={classes.item}>
-          <Typography variant="h6" gutterBottom>
-            Standard TextArea
-          </Typography>
-          <TextArea
-            name="text_area"
-            label="Text Area"
-            value={filterValues.text_area}
-            rows="8"
-            width={300}
-            onChange={handleChange}
-          />
-        </div>
-        <div className={classes.item}>
-          <Typography variant="h6" gutterBottom>
-            Outlined TextArea
-          </Typography>
-          <TextArea
-            name="text_area"
-            label="Text Area"
-            value={filterValues.text_area}
-            rows="8"
-            width={300}
-            variant="outlined"
+            labelColor="primary"
             outlineColor="primary"
-            labelColor="primary"
-            onChange={handleChange}
+            onChange={() => {}}
           />
+          <TextField
+            name="structures"
+            label="Structures"
+            value=""
+            variant="outlined"
+            labelColor="primary"
+            outlineColor="primary"
+            onChange={() => {}}
+          />
+          <TextField
+            name="measurement_types"
+            label="Measurement Type"
+            value=""
+            variant="outlined"
+            labelColor="primary"
+            outlineColor="primary"
+            onChange={() => {}}
+          />
+
+          <FilterActions>
+            <Button type="submit" variant="contained" color="primary">
+              Submit
+            </Button>
+            <Button
+              variant="contained"
+              color="secondary"
+              style={{ marginLeft: 8 }}
+            >
+              Save as View
+            </Button>
+          </FilterActions>
+
+          <FilterAdvanced>
+            <TextField
+              name="aggregation_level"
+              label="Aggregation Level"
+              value=""
+              variant="outlined"
+              labelColor="primary"
+              outlineColor="primary"
+              onChange={() => {}}
+            />
+            <TextField
+              name="end_date"
+              label="End Date"
+              value=""
+              variant="outlined"
+              labelColor="primary"
+              outlineColor="primary"
+              onChange={() => {}}
+            />
+          </FilterAdvanced>
+        </FilterBar>
+        <Typography variant="h6" gutterBottom>
+          Date Pickers
+        </Typography>
+        <div className={classes.row}>
+          <div className={classes.item}>
+            <Typography variant="body1" gutterBottom>
+              Standard
+            </Typography>
+            <DatePicker
+              name="date"
+              label="Date"
+              value={filterValues.date}
+              onChange={handleChange}
+            />
+          </div>
+          <div className={classes.item}>
+            <Typography variant="body1" gutterBottom>
+              Outlined
+            </Typography>
+            <DatePicker
+              name="date"
+              label="Date"
+              variant="outlined"
+              value={filterValues.date}
+              onChange={handleChange}
+            />
+          </div>
+          <div className={classes.item}>
+            <Typography variant="body1" gutterBottom>
+              Filled
+            </Typography>
+            <DatePicker
+              name="date"
+              label="Date"
+              variant="filled"
+              value={filterValues.date}
+              onChange={handleChange}
+            />
+          </div>
         </div>
-        <div className={classes.item}>
-          <Typography variant="h6" gutterBottom>
-            Outlined TextArea
-          </Typography>
-          <TextArea
-            name="text_area"
-            label="Text Area"
-            value={filterValues.text_area}
-            rows="8"
-            width={300}
-            variant="filled"
-            fillColor="primary"
-            labelColor="primary"
-            onChange={handleChange}
-          />
+        <Divider className={classes.divider} />
+
+        <Typography variant="h6" gutterBottom>
+          Switch
+        </Typography>
+        <div className={classes.row}>
+          <div className={classes.item}>
+            <Typography variant="body1" gutterBottom>
+              Switch - Primary
+            </Typography>
+            <Switch
+              name="switch"
+              label="Enabled"
+              value="switch"
+              color="primary"
+              checked={filterValues.switch}
+              onChange={handleChange}
+            />
+          </div>
+          <div className={classes.item}>
+            <Typography variant="body1" gutterBottom>
+              Switch - Secondary
+            </Typography>
+            <Switch
+              name="switch"
+              label="Enabled"
+              value="switch"
+              color="secondary"
+              checked={filterValues.switch}
+              onChange={handleChange}
+            />
+          </div>
+          <div className={classes.item}>
+            <Typography variant="body1" gutterBottom>
+              Switch - Small
+            </Typography>
+            <Switch
+              name="switch"
+              label="Enabled"
+              value="switch"
+              color="primary"
+              size="small"
+              checked={filterValues.switch}
+              onChange={handleChange}
+            />
+          </div>
+        </div>
+        <Divider className={classes.divider} />
+
+        <Typography variant="h6" gutterBottom>
+          Selects
+        </Typography>
+        <div className={classes.row}>
+          <div className={classes.item}>
+            <Typography variant="body1" gutterBottom>
+              Standard Select
+            </Typography>
+            <Select
+              name="single_select"
+              label="Single Select"
+              variant="standard"
+              valueField="ndx"
+              displayField="display"
+              data={data}
+              value={filterValues.single_select}
+              onChange={handleChange}
+              width={200}
+            />
+          </div>
+          <div className={classes.item}>
+            <Typography variant="body1" gutterBottom>
+              Outlined Select
+            </Typography>
+            <Select
+              name="single_select"
+              label="Single Select"
+              variant="outlined"
+              valueField="ndx"
+              displayField="display"
+              data={data}
+              value={filterValues.single_select}
+              onChange={handleChange}
+              width={200}
+            />
+          </div>
+          <div className={classes.item}>
+            <Typography variant="body1" gutterBottom>
+              Filled Select
+            </Typography>
+            <Select
+              name="single_select"
+              label="Single Select"
+              variant="filled"
+              valueField="ndx"
+              displayField="display"
+              data={data}
+              value={filterValues.single_select}
+              onChange={handleChange}
+              width={200}
+            />
+          </div>
+        </div>
+        <div className={classes.row}>
+          <div className={classes.item}>
+            <Typography variant="body1" gutterBottom>
+              Standard Multi-Select
+            </Typography>
+            <MultiSelect
+              name="multi_select"
+              label="Standard Multi Select"
+              variant="standard"
+              valueField="ndx"
+              displayField="display"
+              data={data}
+              value={filterValues.multi_select}
+              width={200}
+              onChange={handleChange}
+            />
+          </div>
+          <div className={classes.item}>
+            <Typography variant="body1" gutterBottom>
+              Outlined Multi-Select
+            </Typography>
+            <MultiSelect
+              name="multi_select"
+              label="Outlined Multi Select"
+              variant="outlined"
+              valueField="ndx"
+              displayField="display"
+              data={data}
+              value={filterValues.multi_select}
+              width={200}
+              onChange={handleChange}
+            />
+          </div>
+          <div className={classes.item}>
+            <Typography variant="body1" gutterBottom>
+              Filled Multi-Select
+            </Typography>
+            <MultiSelect
+              name="multi_select"
+              label="Filled Multi Select"
+              variant="filled"
+              valueField="ndx"
+              displayField="display"
+              data={data}
+              value={filterValues.multi_select}
+              width={200}
+              onChange={handleChange}
+            />
+          </div>
+        </div>
+        <Divider className={classes.divider} />
+
+        <Typography variant="h6" gutterBottom>
+          TextFields
+        </Typography>
+        <div className={classes.row}>
+          <div className={classes.item}>
+            <Typography variant="h6" gutterBottom>
+              Standard TextField
+            </Typography>
+            <TextField
+              name="text_field"
+              label="Standard Text Field"
+              value={filterValues.text_field}
+              onChange={handleChange}
+            />
+          </div>
+          <div className={classes.item}>
+            <Typography variant="h6" gutterBottom>
+              Outlined TextField
+            </Typography>
+            <TextField
+              name="text_field"
+              label="Outlined Text Field"
+              value={filterValues.text_field}
+              variant="outlined"
+              onChange={handleChange}
+            />
+          </div>
+          <div className={classes.item}>
+            <Typography variant="h6" gutterBottom>
+              Filled TextField
+            </Typography>
+            <TextField
+              name="text_field"
+              label="Filled Text Field"
+              value={filterValues.text_field}
+              variant="filled"
+              onChange={handleChange}
+            />
+          </div>
+        </div>
+        <Divider className={classes.divider} />
+
+        <Typography variant="h6" gutterBottom>
+          TextAreas
+        </Typography>
+        <div className={classes.row}>
+          <div className={classes.item}>
+            <Typography variant="h6" gutterBottom>
+              Standard TextArea
+            </Typography>
+            <TextArea
+              name="text_area"
+              label="Text Area"
+              value={filterValues.text_area}
+              rows="8"
+              width={300}
+              onChange={handleChange}
+            />
+          </div>
+          <div className={classes.item}>
+            <Typography variant="h6" gutterBottom>
+              Outlined TextArea
+            </Typography>
+            <TextArea
+              name="text_area"
+              label="Text Area"
+              value={filterValues.text_area}
+              rows="8"
+              width={300}
+              variant="outlined"
+              outlineColor="primary"
+              labelColor="primary"
+              onChange={handleChange}
+            />
+          </div>
+          <div className={classes.item}>
+            <Typography variant="h6" gutterBottom>
+              Outlined TextArea
+            </Typography>
+            <TextArea
+              name="text_area"
+              label="Text Area"
+              value={filterValues.text_area}
+              rows="8"
+              width={300}
+              variant="filled"
+              fillColor="primary"
+              labelColor="primary"
+              onChange={handleChange}
+            />
+          </div>
         </div>
       </div>
-    </div>
+    </Layout>
   );
 };
 

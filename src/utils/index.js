@@ -1,6 +1,25 @@
 import { lighten } from "@material-ui/core/styles";
 
 /**
+ * utility function used to check
+ * if a menu item is active or not
+ * @param {*} url
+ */
+export const checkActive = (url, exact) => {
+  if (exact) {
+    if (window.location.pathname === url) {
+      return true;
+    }
+    return false;
+  } else {
+    if (window.location.pathname.includes(url)) {
+      return true;
+    }
+    return false;
+  }
+};
+
+/**
  * Utility function for returning a list of objects associated with an
  * array of values
  * @param {array} associations array of association values

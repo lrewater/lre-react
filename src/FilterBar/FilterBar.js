@@ -29,6 +29,7 @@ const FilterBar = ({ onSubmit, children, ...other }) => {
         data-testid="filter-form"
         className={classes.filters}
         onSubmit={onSubmit}
+        method="post"
       >
         {children}
       </form>

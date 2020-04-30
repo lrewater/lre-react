@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import { Typography } from "@material-ui/core";
 import { Table, EditableTable } from "lre-react";
+import Layout from "../components/Layout";
 
 // create page styles
 const useStyles = makeStyles(theme => ({
@@ -123,34 +124,36 @@ const Tables = props => {
   ];
 
   return (
-    <div className={classes.root}>
-      <div className={classes.table}>
-        <Typography variant="h6" gutterBottom>
-          Table Component
-        </Typography>
-        <Table
-          data={tableData}
-          columns={columns}
-          loading={false}
-          title="Table"
-          size="small"
-          stickyHeader={true}
-          height={300}
-        />
+    <Layout>
+      <div className={classes.root}>
+        <div className={classes.table}>
+          <Typography variant="h6" gutterBottom>
+            Table Component
+          </Typography>
+          <Table
+            data={tableData}
+            columns={columns}
+            loading={false}
+            title="Table"
+            size="small"
+            stickyHeader={true}
+            height={300}
+          />
+        </div>
+        <div className={classes.table}>
+          <Typography variant="h6" gutterBottom>
+            EditableTable Component
+          </Typography>
+          <EditableTable
+            data={tableData}
+            columns={editableColumns}
+            title="Table"
+            handleRowClick={() => {}}
+            handleDelete={() => {}}
+          />
+        </div>
       </div>
-      <div className={classes.table}>
-        <Typography variant="h6" gutterBottom>
-          EditableTable Component
-        </Typography>
-        <EditableTable
-          data={tableData}
-          columns={editableColumns}
-          title="Table"
-          handleRowClick={() => {}}
-          handleDelete={() => {}}
-        />
-      </div>
-    </div>
+    </Layout>
   );
 };
 

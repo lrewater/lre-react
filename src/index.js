@@ -9,3 +9,4 @@ export { default as FilterActions } from "./FilterActions";
 export { default as FilterBar } from "./FilterBar";
 export { default as Table } from "./Table";
 export { default as EditableTable } from "./EditableTable";
+export { default as ViewManager } from "./ViewManager";
