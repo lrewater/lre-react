@@ -22,7 +22,9 @@
     "start": "rollup -c -w",
     "prepare": "yarn run build",
     "predeploy": "cd example && yarn install && yarn run build",
-    "deploy": "gh-pages -d example/build"
+    "deploy": "gh-pages -d example/build",
+    "storybook": "start-storybook -p 9009",
+    "build-storybook": "build-storybook"
   },
   "peerDependencies": {
     "@material-ui/core": "^4.9.12",
@@ -34,6 +36,11 @@
   "devDependencies": {
     "@material-ui/core": "^4.9.12",
     "@material-ui/icons": "^4.9.1",
+    "@storybook/addon-actions": "^5.3.18",
+    "@storybook/addon-links": "^5.3.18",
+    "@storybook/addons": "^5.3.18",
+    "@storybook/preset-create-react-app": "^2.1.1",
+    "@storybook/react": "^5.3.18",
     "@svgr/rollup": "^2.4.1",
     "@testing-library/react": "^9.4.1",
     "@testing-library/react-hooks": "^3.2.1",

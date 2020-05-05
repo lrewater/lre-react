@@ -229,6 +229,6 @@ export const setWidth = (width, fullWidth) => {
   } else if (width) {
     return width;
   } else {
-    ("inherit");
+    return "inherit";
   }
 };
