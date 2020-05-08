@@ -1,85 +1,65 @@
 {
-  "name": "@lrewater/lre-react",
-  "version": "0.0.0",
-  "description": "",
-  "author": "lrewater",
+  "version": "0.1.0",
   "license": "MIT",
-  "repository": "git://github.com/lrewater/lre-react.git",
   "main": "dist/index.js",
-  "module": "dist/index.es.js",
-  "jsnext:main": "dist/index.es.js",
+  "typings": "dist/index.d.ts",
+  "files": [
+    "dist",
+    "src"
+  ],
   "engines": {
-    "node": ">=8",
-    "npm": ">=5"
-  },
-  "publishConfig": {
-    "access": "public"
+    "node": ">=10"
   },
   "scripts": {
-    "test": "cross-env CI=1 react-scripts test --env=jsdom",
-    "test:watch": "react-scripts test --env=jsdom",
-    "build": "rollup -c",
-    "start": "rollup -c -w",
-    "prepare": "yarn run build",
-    "predeploy": "cd example && yarn install && yarn run build",
-    "deploy": "gh-pages -d example/build",
-    "storybook": "start-storybook -p 9009",
+    "start": "tsdx watch",
+    "build": "tsdx build",
+    "test": "tsdx test --passWithNoTests",
+    "lint": "tsdx lint",
+    "prepare": "tsdx build",
+    "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook"
   },
   "peerDependencies": {
-    "@material-ui/core": "^4.9.12",
-    "@material-ui/icons": "^4.9.1",
-    "prop-types": "^15.5.4",
-    "react": "^15.0.0 || ^16.0.0",
-    "react-dom": "^15.0.0 || ^16.0.0"
+    "react": ">=16",
+    "@material-ui/core": "^4.9.13",
+    "@material-ui/icons": "^4.9.1"
   },
+  "husky": {
+    "hooks": {
+      "pre-commit": "tsdx lint"
+    }
+  },
+  "prettier": {
+    "printWidth": 80,
+    "semi": true,
+    "singleQuote": true,
+    "trailingComma": "es5"
+  },
+  "name": "lre-react",
+  "author": "Ben Tyler",
+  "module": "dist/lre-react.esm.js",
   "devDependencies": {
-    "@material-ui/core": "^4.9.12",
+    "@babel/core": "^7.9.6",
+    "@material-ui/core": "^4.9.13",
     "@material-ui/icons": "^4.9.1",
     "@storybook/addon-actions": "^5.3.18",
+    "@storybook/addon-docs": "^5.3.18",
+    "@storybook/addon-info": "^5.3.18",
     "@storybook/addon-links": "^5.3.18",
     "@storybook/addons": "^5.3.18",
-    "@storybook/preset-create-react-app": "^2.1.1",
     "@storybook/react": "^5.3.18",
-    "@svgr/rollup": "^2.4.1",
-    "@testing-library/react": "^9.4.1",
-    "@testing-library/react-hooks": "^3.2.1",
-    "@testing-library/user-event": "^10.0.0",
-    "@types/jest": "^25.1.3",
-    "babel-core": "^6.26.3",
-    "babel-eslint": "^8.2.5",
-    "babel-plugin-external-helpers": "^6.22.0",
-    "babel-preset-env": "^1.7.0",
-    "babel-preset-react": "^6.24.1",
-    "babel-preset-stage-0": "^6.24.1",
-    "cross-env": "^5.1.4",
-    "eslint": "^5.0.1",
-    "eslint-config-standard": "^11.0.0",
-    "eslint-config-standard-react": "^6.0.0",
-    "eslint-plugin-import": "^2.13.0",
-    "eslint-plugin-node": "^7.0.1",
-    "eslint-plugin-promise": "^4.0.0",
-    "eslint-plugin-react": "^7.10.0",
-    "eslint-plugin-standard": "^3.1.0",
-    "gh-pages": "^1.2.0",
-    "react": "^16.12.0",
-    "react-dom": "^16.12.0",
-    "react-scripts": "^3.4.0",
-    "react-test-renderer": "^16.12.0",
-    "rollup": "^0.64.1",
-    "rollup-plugin-babel": "^3.0.7",
-    "rollup-plugin-commonjs": "^9.1.3",
-    "rollup-plugin-node-resolve": "^3.3.0",
-    "rollup-plugin-peer-deps-external": "^2.2.0",
-    "rollup-plugin-postcss": "^1.6.2",
-    "rollup-plugin-url": "^1.4.0",
-    "semantic-release": "^17.0.4"
+    "@types/react": "^16.9.34",
+    "@types/react-dom": "^16.9.7",
+    "babel-loader": "^8.1.0",
+    "husky": "^4.2.5",
+    "react": "^16.13.1",
+    "react-docgen-typescript-loader": "^3.7.2",
+    "react-dom": "^16.13.1",
+    "react-is": "^16.13.1",
+    "ts-loader": "^7.0.2",
+    "tsdx": "^0.13.2",
+    "tslib": "^1.11.1",
+    "typescript": "^3.8.3"
   },
-  "files": [
-    "dist"
-  ],
-  "dependencies": {
-    "clsx": "^1.1.0",
-    "react-csv": "^2.0.1"
-  }
+  "dependencies": {}
 }

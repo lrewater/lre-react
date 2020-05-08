@@ -1,0 +1,28 @@
+{
+  "include": ["src", "types"],
+  "compilerOptions": {
+    "noImplicitAny": true,
+    "noImplicitThis": true,
+    "strictNullChecks": true,
+    "module": "esnext",
+    "lib": ["es6", "dom"],
+    // "lib": ["dom", "esnext"],
+    "importHelpers": true,
+    "declaration": true,
+    "sourceMap": true,
+    "rootDir": "./src",
+    "strict": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noImplicitReturns": true,
+    "noFallthroughCasesInSwitch": true,
+    "moduleResolution": "node",
+    "baseUrl": "./",
+    "esModuleInterop": true,
+    "paths": {
+      "@": ["./"],
+      "*": ["src/*", "node_modules/*"]
+    },
+    "jsx": "react"
+  }
+}
