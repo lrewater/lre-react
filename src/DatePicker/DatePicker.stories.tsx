@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { DatePicker } from '../src';
+import DatePicker, { DatePickerProps } from './DatePicker';
 
 export default {
   title: 'DatePicker',
@@ -7,7 +7,7 @@ export default {
 
 // By passing optional props to this story, you can control the props of the component when
 // you consume the story in a test.
-export const Default = props => {
+export const Default = (props: DatePickerProps) => {
   const [date, setDate] = useState('2020-05-06');
   return (
     <DatePicker
@@ -20,7 +20,7 @@ export const Default = props => {
   );
 };
 
-export const Outlined = props => {
+export const Outlined = (props: DatePickerProps) => {
   const [date, setDate] = useState('2020-05-06');
   return (
     <DatePicker
@@ -34,7 +34,7 @@ export const Outlined = props => {
   );
 };
 
-export const Filled = props => {
+export const Filled = (props: DatePickerProps) => {
   const [date, setDate] = useState('2020-05-06');
   return (
     <DatePicker

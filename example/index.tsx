@@ -1,13 +1,17 @@
 import 'react-app-polyfill/ie11';
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { Thing, DatePicker } from '../.';
+import { DatePicker } from '../.';
 
 const App = () => {
   return (
     <div>
-      <Thing />
-      <{/* <DatePicker /> */}>
+      <DatePicker
+        name="test"
+        label="Test"
+        value="2020-05-26"
+        onChange={(e: React.ChangeEvent<HTMLInputElement>) => e}
+      />
     </div>
   );
 };

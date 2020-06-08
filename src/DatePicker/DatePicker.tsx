@@ -6,65 +6,69 @@ const useStyles = makeStyles((theme: Theme) => ({
   TextField: {
     margin: theme.spacing(1),
     '& label': {
-      color: (props: Props) => setInputColor(props.labelColor, theme),
+      color: (props: DatePickerProps) =>
+        setInputColor(props.labelColor!, theme),
     },
   },
   outlinedTextField: {
     margin: theme.spacing(1),
     '& input + fieldset': {
-      borderColor: (props: Props) => setInputColor(props.outlineColor, theme),
+      borderColor: (props: DatePickerProps) =>
+        setInputColor(props.outlineColor!, theme),
       borderWidth: 1.5,
     },
     '& label': {
-      color: (props: Props) => setInputColor(props.labelColor, theme),
+      color: (props: DatePickerProps) =>
+        setInputColor(props.labelColor!, theme),
     },
   },
   filledTextField: {
     margin: theme.spacing(1),
     '& div': {
-      backgroundColor: (props: Props) =>
-        setInputColor(props.fillColor, theme, 0.85),
+      backgroundColor: (props: DatePickerProps) =>
+        setInputColor(props.fillColor!, theme, 0.85),
     },
     '& div:hover': {
-      backgroundColor: (props: Props) =>
-        setInputColor(props.fillColor, theme, 0.75),
+      backgroundColor: (props: DatePickerProps) =>
+        setInputColor(props.fillColor!, theme, 0.75),
     },
     '& div:focus': {
-      backgroundColor: (props: Props) =>
-        setInputColor(props.fillColor, theme, 0.75),
+      backgroundColor: (props: DatePickerProps) =>
+        setInputColor(props.fillColor!, theme, 0.75),
     },
     '& input:hover': {
-      backgroundColor: (props: Props) =>
-        setInputColor(props.fillColor, theme, 0.75),
+      backgroundColor: (props: DatePickerProps) =>
+        setInputColor(props.fillColor!, theme, 0.75),
       borderTopLeftRadius: 4,
       borderTopRightRadius: 4,
     },
     '& input:focus': {
-      backgroundColor: (props: Props) =>
-        setInputColor(props.fillColor, theme, 0.75),
+      backgroundColor: (props: DatePickerProps) =>
+        setInputColor(props.fillColor!, theme, 0.75),
       borderTopLeftRadius: 4,
       borderTopRightRadius: 4,
     },
     '& label': {
-      color: (props: Props) => setInputColor(props.labelColor, theme),
+      color: (props: DatePickerProps) =>
+        setInputColor(props.labelColor!, theme),
     },
   },
 }));
 
-export interface Props {
+export interface DatePickerProps {
   name: string;
   label: string;
   value: string;
-  variant: 'standard' | 'outlined' | 'filled';
-  outlineColor: 'default' | 'primary' | 'secondary';
-  fillColor: 'default' | 'primary' | 'secondary';
-  labelColor: 'default' | 'primary' | 'secondary';
-  width: string | number;
-  fullWidth: boolean;
-  onChange: () => void;
+  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  variant?: 'standard' | 'outlined' | 'filled';
+  outlineColor?: 'default' | 'primary' | 'secondary';
+  fillColor?: 'default' | 'primary' | 'secondary';
+  labelColor?: 'default' | 'primary' | 'secondary';
+  width?: string | number;
+  fullWidth?: boolean;
 }
 
-const DatePicker: React.FC<Props> = ({
+const DatePicker: React.FC<DatePickerProps> = ({
   name,
   label,
   value,
@@ -73,7 +77,7 @@ const DatePicker: React.FC<Props> = ({
   outlineColor = 'default',
   fillColor = 'default',
   labelColor = 'default',
-  width,
+  width = 150,
   fullWidth = false,
   ...other
 }) => {
